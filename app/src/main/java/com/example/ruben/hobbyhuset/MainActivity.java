@@ -9,7 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.ruben.hobbyhuset.dummy.DummyContent;
+
+public class MainActivity
+        extends AppCompatActivity
+        implements KundeFragment.OnListFragmentInteractionListener,
+        OrdreFragment.OnListFragmentInteractionListener,
+        VareFragment.OnListFragmentInteractionListener {
+
+    // TODO: Preference manager to remember login
+    // TODO: Navigation drawer to select fragment
 
     // Gets current fragment and disables the button for that fragment
     int currentFragment;
@@ -19,11 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Starts KundeFragment as default fragment
+        // Starts KundeFragment as default fragment when the app launches
         currentFragment = R.id.action_kunde;
         startFragment(R.id.action_kunde);
-
-
     }
 
     @Override
@@ -38,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // private method to launch a fragment based on the fragment ID|
+    /// private method to launch a fragment based on the fragment ID
     private void startFragment(int id) {
         Fragment fragment = null;
         FragmentManager fm;
@@ -63,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "Failed to start fragment", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
 }
