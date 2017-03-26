@@ -5,9 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by Ruben on 23.03.2017.
@@ -16,9 +14,30 @@ import java.text.SimpleDateFormat;
 public class Ordre {
 
     int ordreNr;
-    Date ordreDato;
-    Date sendtDato;
-    Date betaltDato;
+
+    public int getOrdreNr() {
+        return ordreNr;
+    }
+
+    public String getOrdreDato() {
+        return ordreDato;
+    }
+
+    public String getSendtDato() {
+        return sendtDato;
+    }
+
+    public String getBetaltDato() {
+        return betaltDato;
+    }
+
+    public int getKundeNr() {
+        return kundeNr;
+    }
+
+    String ordreDato;
+    String sendtDato;
+    String betaltDato;
     int kundeNr;
 
     // Name of table and columns from database
@@ -29,7 +48,7 @@ public class Ordre {
     static final String KOL_NAVN_BETALTDATO = "BetaltDato";
     static final String KOL_NAVN_KNR = "KNr";
 
-    public Ordre(int ordreNr, Date ordreDato, Date sendtDato, Date betaltDato, int kundeNr) {
+    public Ordre(int ordreNr, String ordreDato, String sendtDato, String betaltDato, int kundeNr) {
         this.ordreNr = ordreNr;
         this.ordreDato = ordreDato;
         this.sendtDato = sendtDato;
@@ -42,16 +61,9 @@ public class Ordre {
 
     public Ordre(JSONObject jsonOrdre) throws ParseException {
         this.ordreNr = jsonOrdre.optInt(KOL_NAVN_ORDRENR);
-
-        // TODO: Fix this shit it wont work you dumbo
-        String dateStr = jsonOrdre.optString(KOL_NAVN_ORDREDATO);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        this.ordreDato = sdf.parse(dateStr);
-        dateStr = jsonOrdre.optString(KOL_NAVN_SENDTDATO);
-        this.sendtDato = sdf.parse(dateStr);
-        dateStr = jsonOrdre.optString(KOL_NAVN_BETALTDATO);
-        this.betaltDato = sdf.parse(dateStr);
-
+        this.ordreDato = jsonOrdre.optString(KOL_NAVN_ORDREDATO);
+        this.sendtDato = jsonOrdre.optString(KOL_NAVN_SENDTDATO);
+        this.betaltDato = jsonOrdre.optString(KOL_NAVN_BETALTDATO);
         this.kundeNr = jsonOrdre.optInt(KOL_NAVN_KNR);
     }
 

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -11,13 +12,33 @@ import java.util.ArrayList;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Kunde {
+public class Kunde implements Serializable {
 
     int kundeNr;
     String fornavn;
     String etternavn;
     String adresse; // TODO: Make Class "adresse"
     int postNr; // TODO: make Class "Poststed"
+
+    public int getKundeNr() {
+        return kundeNr;
+    }
+
+    public String getFornavn() {
+        return fornavn;
+    }
+
+    public String getEtternavn() {
+        return etternavn;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public int getPostNr() {
+        return postNr;
+    }
 
     static final String TABELL_NAVN = "Kunde";
     static final String KOL_NAVN_KNR  = "KNr";

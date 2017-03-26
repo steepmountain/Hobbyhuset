@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_kundeNr"
+        android:text="tittel"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textAllCaps="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_fornavn"
+        android:text="pris"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:padding="5dp"
+        android:layout_below="@+id/textView_postNr"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_etternavn"
+        android:text="sjanger"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:padding="5dp"
+        android:layout_below="@+id/textView_kundeNr"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView_adresse"
+    android:text="tid"
+    android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_below="@+id/textView_etternavn"
+    android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_postNr"
+        android:text="tid"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_below="@+id/textView_adresse"
+        android:padding="5dp"/>
+
+</RelativeLayout>

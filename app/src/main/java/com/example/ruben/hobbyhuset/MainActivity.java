@@ -1,35 +1,42 @@
 package com.example.ruben.hobbyhuset;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.ruben.hobbyhuset.dummy.DummyContent;
 
 public class MainActivity
-        extends AppCompatActivity
-        implements KundeFragment.OnListFragmentInteractionListener,
-        OrdreFragment.OnListFragmentInteractionListener,
-        VareFragment.OnListFragmentInteractionListener {
+        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener { //, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {
 
     // TODO: Preference manager to remember login
     // TODO: Navigation drawer to select fragment
 
-    // Gets current fragment and disables the button for that fragment
-    int currentFragment;
+    private static final int REQUEST_CODE_PERMISSION = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // checks if permissions are granted
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)!= PackageManager.PERMISSION_GRANTED)
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)!= PackageManager.PERMISSION_GRANTED)) {
+            // asks for permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, REQUEST_CODE_PERMISSION);
+        }
+
         // Starts KundeFragment as default fragment when the app launches
-        currentFragment = R.id.action_kunde;
         startFragment(R.id.action_kunde);
     }
 
@@ -54,12 +61,14 @@ public class MainActivity
         if (id == R.id.action_kunde) {
             fragment = new KundeFragment();
         }
+        /*
         else if (id == R.id.action_ordre) {
             fragment = new OrdreFragment();
         }
         else if (id == R.id.action_vare) {
             fragment = new VareFragment();
         }
+        */
 
         if (fragment != null) {
             fm = getSupportFragmentManager();
@@ -74,7 +83,7 @@ public class MainActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

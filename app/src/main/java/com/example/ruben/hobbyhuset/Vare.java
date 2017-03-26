@@ -18,6 +18,31 @@ public class Vare {
     double pris;
     int katNr;
     int antall;
+
+    public String getVareNr() {
+        return vareNr;
+    }
+
+    public String getBetegnelse() {
+        return betegnelse;
+    }
+
+    public double getPris() {
+        return pris;
+    }
+
+    public int getKatNr() {
+        return katNr;
+    }
+
+    public int getAntall() {
+        return antall;
+    }
+
+    public String getHylle() {
+        return hylle;
+    }
+
     String hylle;
 
     // Name of table and columns from database
