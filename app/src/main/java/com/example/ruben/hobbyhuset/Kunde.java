@@ -1,5 +1,9 @@
 package com.example.ruben.hobbyhuset;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +16,7 @@ import java.util.ArrayList;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Kunde implements Serializable {
+public class Kunde implements Parcelable {
 
     int kundeNr;
     String fornavn;
@@ -88,4 +92,39 @@ public class Kunde implements Serializable {
                 ", postNr=" + postNr +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(getKundeNr());
+        parcel.writeString(getFornavn());
+        parcel.writeString(getEtternavn());
+        parcel.writeString(getAdresse());
+        parcel.writeInt(getPostNr());
+    }
+
+    // Constructor to create Kunde from parcel based on FIFO from writeToParcel
+    private Kunde(Parcel in) {
+        this.kundeNr = in.readInt();
+        this.fornavn = in.readString();
+        this.etternavn = in.readString();
+        this.adresse = in.readString();
+        this.postNr = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Kunde> CREATOR = new Parcelable.Creator<Kunde>() {
+        public Kunde createFromParcel(Parcel in) {
+            return new Kunde(in);
+        }
+
+        public Kunde[] newArray(int size) {
+            return new Kunde[size];
+        }
+    };
+
+
 }

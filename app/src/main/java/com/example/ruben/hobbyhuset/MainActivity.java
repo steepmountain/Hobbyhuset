@@ -21,7 +21,18 @@ public class MainActivity
     // TODO: Preference manager to remember login
     // TODO: Navigation drawer to select fragment
 
+    // TODO: split ShowItemActivity into fragments for each datatype?
+
+    // TODO: Make into JSON objects much earlier than currently?
+    // TODO: Api is called and returns info in a long String ->
+    // TODO: OnDataReceived sends String to lagKundeListe ->
+    // TODO: lagKundeListe turns the String into a JSON Array and turns that into an ArrayList<>
+
     private static final int REQUEST_CODE_PERMISSION = 2;
+
+    public static final int KUNDE_CODE = 0;
+    public static final int ORDRE_CODE = 1;
+    public static final int VARE_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

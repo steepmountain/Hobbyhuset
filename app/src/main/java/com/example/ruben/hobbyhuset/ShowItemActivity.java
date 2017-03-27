@@ -2,7 +2,9 @@ package com.example.ruben.hobbyhuset;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 public class ShowItemActivity extends AppCompatActivity {
@@ -17,20 +19,56 @@ public class ShowItemActivity extends AppCompatActivity {
         String output = "";
         tvTempTittel = (TextView) findViewById(R.id.textView_tempTittel);
 
-        // Sjekk type extra som kommer inn
         Intent intent = getIntent();
-            if (intent != null) {
-            Kunde k = (Kunde) getIntent().getSerializableExtra("Film");
-            if (k != null) {
-                output = k.getFornavn() + k.getEtternavn();
-            }
-            else {
-                output = "Nothing to show";
+
+        // checks if the intent is empty upon entering
+        if (intent != null) {
+
+            // Sjekker hvilken datatype som kommer inn
+            int intentCode = getIntent().getIntExtra("Source", -1);
+
+            // hvis inndata er kunde
+            if (intentCode == MainActivity.KUNDE_CODE) {
+                Kunde k = (Kunde) getIntent().getParcelableExtra("Kunde");
+                if (k != null) {
+                    output += "Kunde + \n" +
+                            k.getFornavn() + " " +k.getEtternavn();
+
+                }
+                else {
+                    output += "Kundedata var tom.";
+                }
             }
 
+            // hvis inndata er ordre
+            else if (intentCode == MainActivity.ORDRE_CODE) {
+                Ordre o = (Ordre) getIntent().getParcelableExtra("Ordre");
+                if (o != null) {
+                    output += o.getOrdreNr();
+                }
+                else {
+                    output += "Ordredata var tom.";
+                }
+            }
+
+            // hvis inndata er vare
+            else if (intentCode == MainActivity.VARE_CODE) {
+                Vare v = (Vare) getIntent().getParcelableExtra("Vare");
+                if (v != null) {
+                    output += v.getBetegnelse();
+                }
+                else {
+                    output += "Varedata var tom.";
+                }
+            }
+
+            // hvis ikke matcher noen datatype, skal kun forekomme ved feil data eller default value
+            else {
+                output += "Ukjent datatype";
+            }
         }
         else {
-            output = "Nothing to show";
+            output += "The intent was empty.";
         }
 
 

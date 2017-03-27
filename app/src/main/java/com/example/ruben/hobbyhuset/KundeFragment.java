@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,20 +94,31 @@ public class KundeFragment extends Fragment {
         View fragment = inflater.inflate(R.layout.fragment_kunde, container, false);
         mKundeListView = (ListView) fragment.findViewById(R.id.listView_kunde);
 
+        // If the device is online, make a call to the API and request a list of every Kunde
         if (isOnline()) {
-            KundeListeGetter getter = new KundeListeGetter();
-            getter.execute();
+            HobbyhusetApi api = new HobbyhusetApi();
+            api.getAlleKunder(new GetResponseCallback() {
+                @Override
+                void onDataReceived(String item) {
+                    try {
+                        oppdaterKundeListe(mKundeListe = Kunde.lagKundeListe(item));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            });
         }
         else {
             Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
         }
-        oppdaterKundeListe(mKundeListe);
-
 
         // Inflate the layout for this fragment
         return fragment;
     }
 
+    // Updates the ListView with a new ArrayList of Kunde
     public void oppdaterKundeListe(ArrayList<Kunde> nyKundeListe) {
 
         mAdapter = new KundeAdapter(getActivity(), nyKundeListe);
@@ -116,7 +128,7 @@ public class KundeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), ShowItemActivity.class);
-                Log.d("KundeFragment", mKundeListe.get(i).toString());
+                intent.putExtra("Source", MainActivity.KUNDE_CODE);
                 intent.putExtra("Kunde", mKundeListe.get(i));
                 startActivity(intent);
             }
@@ -126,62 +138,11 @@ public class KundeFragment extends Fragment {
     }
 
 
+    // Checks if the device is online
     public boolean isOnline() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
-    }
-
-    private class KundeListeGetter extends AsyncTask<String , String, Long> {
-
-        @Override
-        protected Long doInBackground(String... params) {
-
-            HttpURLConnection connection = null;
-            try {
-                URL kundeListeURL = new URL(URLString);
-                connection = (HttpURLConnection) kundeListeURL.openConnection();
-                connection.connect();
-                int status = connection.getResponseCode();
-
-                if (status == HttpURLConnection.HTTP_OK) {
-                    InputStream is = connection.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-                    String response;
-                    StringBuilder builder = new StringBuilder();
-                    while ((response = reader.readLine()) != null) {
-                        builder.append(response);
-                    }
-                    mKundeListe = Kunde.lagKundeListe(builder.toString());
-                    return (0l);
-                }
-                else {
-                    return (1l);
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return (1l);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return (1l);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return (1l);
-            }
-            finally {
-                connection.disconnect();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Long result) {
-            if (result == 0) {
-                oppdaterKundeListe(mKundeListe);
-            }
-            else {
-                Toast.makeText(getActivity(), "Noe gikk galt!", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     @Override

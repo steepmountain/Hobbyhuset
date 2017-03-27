@@ -1,5 +1,8 @@
 package com.example.ruben.hobbyhuset;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Vare {
+public class Vare implements Parcelable{
 
     // Variables for Vare
     String vareNr;
@@ -100,4 +103,41 @@ public class Vare {
                 ", hylle='" + hylle + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(getVareNr());
+        parcel.writeString(getBetegnelse());
+        parcel.writeDouble(getPris());
+        parcel.writeInt(getKatNr());
+        parcel.writeInt(getAntall());
+        parcel.writeString(getHylle());
+    }
+
+    // Constructor to create Vare from parcel based on FIFO from writeToParcel
+    private Vare(Parcel in) {
+        this.vareNr = in.readString();
+        this.betegnelse = in.readString();
+        this.pris = in.readDouble();
+        this.katNr= in.readInt();
+        this.antall = in.readInt();
+        this.hylle = in.readString();
+    }
+
+    public static final Parcelable.Creator<Vare> CREATOR = new Parcelable.Creator<Vare>() {
+        public Vare createFromParcel(Parcel in) {
+            return new Vare(in);
+        }
+
+        public Vare[] newArray(int size) {
+            return new Vare[size];
+        }
+    };
+
+
 }
