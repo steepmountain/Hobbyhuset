@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/kundeItemTextView_kundeNr"
+        android:id="@+id/ordreItemTextView_ordreNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,39 +15,41 @@
         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
-        android:id="@+id/kundeItemTextView_fornavn"
+        android:id="@+id/ordreItemTextView_ordreDato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/kundeItemTextView_kundeNr"
-        android:padding="5dp"
-        android:text="pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/kundeItemTextView_etternavn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/kundeItemTextView_fornavn"
-        android:padding="5dp"
-        android:text="sjanger"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/kundeItemTextView_adresse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/kundeItemTextView_etternavn"
+        android:layout_below="@+id/ordreItemTextView_ordreNr"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
-        android:id="@+id/kundeItemTextView_postNr"
+        android:id="@+id/ordreItemTextView_sendtDato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/kundeItemTextView_adresse"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ordreItemTextView_ordreDato"
+        android:padding="5dp"
+        android:text="pris"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/ordreItemTextView_betaltDato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ordreItemTextView_sendtDato"
+        android:padding="5dp"
+        android:text="sjanger"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+
+
+    <TextView
+        android:id="@+id/ordreItemTextView_kundeNr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ordreItemTextView_betaltDato"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />

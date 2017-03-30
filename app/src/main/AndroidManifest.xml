@@ -19,11 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ShowItemActivity"
-            android:label="@string/title_activity_show_item"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShowItemListActivity"></activity>
+        <activity android:name=".ShowKundeActivity" />
     </application>
 
 </manifest>

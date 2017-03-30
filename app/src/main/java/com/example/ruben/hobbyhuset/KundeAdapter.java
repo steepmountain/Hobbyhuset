@@ -45,18 +45,17 @@ public class KundeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder vh;
 
-        if(convertView == null) {
+        if (convertView == null) {
             convertView = mInflater.inflate(R.layout.kunde_item, null);
             vh = new ViewHolder();
-            vh.tvKundeNr = (TextView) convertView.findViewById(R.id.textView_kundeNr);
-            vh.tvFornavn = (TextView) convertView.findViewById(R.id.textView_fornavn);
-            vh.tvEtternavn = (TextView) convertView.findViewById(R.id.textView_etternavn);
-            vh.tvAdresse = (TextView) convertView.findViewById(R.id.textView_adresse);
-            vh.tvPostNr = (TextView) convertView.findViewById(R.id.textView_postNr);
+            vh.tvKundeNr = (TextView) convertView.findViewById(R.id.kundeItemTextView_kundeNr);
+            vh.tvFornavn = (TextView) convertView.findViewById(R.id.kundeItemTextView_fornavn);
+            vh.tvEtternavn = (TextView) convertView.findViewById(R.id.kundeItemTextView_etternavn);
+            vh.tvAdresse = (TextView) convertView.findViewById(R.id.kundeItemTextView_adresse);
+            vh.tvPostNr = (TextView) convertView.findViewById(R.id.kundeItemTextView_postNr);
 
             convertView.setTag(vh);
-        }
-        else {
+        } else {
             vh = (ViewHolder) convertView.getTag();
         }
 

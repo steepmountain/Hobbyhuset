@@ -16,17 +16,21 @@ import android.widget.Toast;
 
 
 public class MainActivity
-        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener { //, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {
+        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener { //, VareFragment.OnFragmentInteractionListener {
 
+    // Priority 1: Functionality
+    // TODO: Implement VareAdapter, VareFragment
+    // TODO: Implement ShowOrdreActivity, ShowVareActivity
+    // TODO: Add VareFragment to ShowOrdreActivity
+
+    // Priority 2: Required additions
     // TODO: Preference manager to remember login
-    // TODO: Navigation drawer to select fragment
+    // TODO: Settings menu
+    // TODO: Navigation drawer to select fragments
 
-    // TODO: split ShowItemActivity into fragments for each datatype?
-
-    // TODO: Make into JSON objects much earlier than currently?
-    // TODO: Api is called and returns info in a long String ->
-    // TODO: OnDataReceived sends String to lagKundeListe ->
-    // TODO: lagKundeListe turns the String into a JSON Array and turns that into an ArrayList<>
+    // Priority 3: Has to wait until functionality is there
+    // TODO: Polish GUI
+    // TODO: Landscape orientation
 
     private static final int REQUEST_CODE_PERMISSION = 2;
 
@@ -72,10 +76,11 @@ public class MainActivity
         if (id == R.id.action_kunde) {
             fragment = new KundeFragment();
         }
-        /*
+
         else if (id == R.id.action_ordre) {
             fragment = new OrdreFragment();
         }
+        /*
         else if (id == R.id.action_vare) {
             fragment = new VareFragment();
         }

@@ -1,5 +1,8 @@
 package com.example.ruben.hobbyhuset;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +14,7 @@ import java.text.ParseException;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Ordre {
+public class Ordre implements Parcelable {
 
     int ordreNr;
 
@@ -90,4 +93,36 @@ public class Ordre {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(getOrdreNr());
+        parcel.writeString(getOrdreDato());
+        parcel.writeString(getBetaltDato());
+        parcel.writeString(getSendtDato());
+        parcel.writeInt(getKundeNr());
+    }
+
+    // Constructor to create Kunde from parcel based on FIFO from writeToParcel
+    private Ordre(Parcel in) {
+        this.ordreNr = in.readInt();
+        this.ordreDato = in.readString();
+        this.betaltDato = in.readString();
+        this.sendtDato = in.readString();
+        this.kundeNr = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Ordre> CREATOR = new Parcelable.Creator<Ordre>() {
+        public Ordre createFromParcel(Parcel in) {
+            return new Ordre(in);
+        }
+
+        public Ordre[] newArray(int size) {
+            return new Ordre[size];
+        }
+    };
 }

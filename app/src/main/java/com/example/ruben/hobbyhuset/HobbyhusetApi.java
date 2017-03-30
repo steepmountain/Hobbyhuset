@@ -1,5 +1,9 @@
 package com.example.ruben.hobbyhuset;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import java.util.ArrayList;
 
 /**
@@ -19,13 +23,18 @@ public class HobbyhusetApi {
 
     // gets kunde by kundeNr
     public void getKunde(GetResponseCallback callback, int kundeNr) {
-        final String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde?filter=kundeNr,eq,"+ kundeNr +"&transform=1";
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde?filter=kNr,eq,"+ kundeNr +"&transform=1";
         doExecuteCall(callback, restUrl);
     }
 
     // gets every Ordre in list
     public void getAlleOrdre(GetResponseCallback callback) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre?transform=1";
+        doExecuteCall(callback, restUrl);
+    }
+
+    public void getOrdreFraKunde(GetResponseCallback callback, int kundeNr) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre?filter=kNr,eq,"+ kundeNr +"&transform=1";
         doExecuteCall(callback, restUrl);
     }
 
@@ -52,4 +61,19 @@ abstract class PostCallback {
      */
     public abstract void onPostSuccess();
 
+}
+
+class NetworkHelper {
+
+    Context mContext;
+
+    public NetworkHelper(Context context) {
+        mContext = context;
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
+    }
 }
