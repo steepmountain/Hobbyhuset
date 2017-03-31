@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.ruben.hobbyhuset.ShowKundeActivity">
 
     <TextView
-        android:id="@+id/ordreItemTextView_ordreNr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_tittel"/>
+
+    <TextView
+        android:id="@+id/textView_ordreNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/textView_tittel"
         android:padding="5dp"
         android:text="tittel"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_ordreDato"
+        android:id="@+id/textView_ordreDato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ordreItemTextView_ordreNr"
+        android:layout_below="@id/textView_ordreNr"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_sendtDato"
+        android:id="@+id/textView_sendtDato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/ordreItemTextView_ordreDato"
+        android:layout_below="@id/textView_ordreDato"
         android:padding="5dp"
         android:text="pris"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_betaltDato"
+        android:id="@+id/textView_betaltDato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/ordreItemTextView_sendtDato"
+        android:layout_below="@id/textView_sendtDato"
         android:padding="5dp"
         android:text="sjanger"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
 
-
     <TextView
-        android:id="@+id/ordreItemTextView_kundeNr"
+        android:id="@+id/textView_kundeNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ordreItemTextView_betaltDato"
+        android:layout_below="@id/textView_betaltDato"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+    <FrameLayout
+        android:id="@+id/varerForOrdreFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_error"
+        android:layout_weight="1" />
+
+
 
 </RelativeLayout>

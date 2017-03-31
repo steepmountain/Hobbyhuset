@@ -81,7 +81,7 @@ public class Vare implements Parcelable{
 
     // Metode som lager en ArrayList med Vare-objekter basert på en streng med JSONdata
     public static ArrayList<Vare> lagVareListe(String jsonString) throws JSONException, NullPointerException {
-        ArrayList<Vare> vareListe = new ArrayList<Vare>();
+        ArrayList<Vare> vareListe = new ArrayList<>();
         JSONObject jsonData = new JSONObject(jsonString);
         JSONArray jsonKundeTabell = jsonData.optJSONArray(TABELL_NAVN);
         for(int i = 0; i < jsonKundeTabell.length(); i++) {

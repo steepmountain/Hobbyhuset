@@ -3,6 +3,7 @@ package com.example.ruben.hobbyhuset;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,21 @@ public class HobbyhusetApi {
 
     public void getOrdreFraKunde(GetResponseCallback callback, int kundeNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre?filter=kNr,eq,"+ kundeNr +"&transform=1";
+        doExecuteCall(callback, restUrl);
+    }
+
+    public void getAlleVarer(GetResponseCallback callback) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare?transform=1";
+        doExecuteCall(callback, restUrl);
+    }
+
+    public void getOrdrelinje(GetResponseCallback callback, int ordreNr) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Ordrelinje?filter=OrdreNr,eq," + ordreNr + "&transform=1";
+        doExecuteCall(callback, restUrl);
+    }
+
+    public void getVare(GetResponseCallback callback, int vareNr) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare?filter=VNr,eq," + vareNr + "&transform=1";
         doExecuteCall(callback, restUrl);
     }
 

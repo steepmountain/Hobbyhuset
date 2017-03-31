@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShowKundeActivity" />
+        <activity android:name=".ShowOrdreActivity" />
+        <activity android:name=".ShowVareActivity" />
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.ruben.hobbyhuset;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,13 +44,18 @@ public class Ordre implements Parcelable {
     String betaltDato;
     int kundeNr;
 
+
+
     // Name of table and columns from database
-    static final String TABELL_NAVN = "Ordre";
+    static final String TABELL_NAVN_ORDRE = "Ordre";
     static final String KOL_NAVN_ORDRENR = "OrdreNr";
     static final String KOL_NAVN_ORDREDATO = "OrdreDato";
     static final String KOL_NAVN_SENDTDATO = "SendtDato";
     static final String KOL_NAVN_BETALTDATO = "BetaltDato";
     static final String KOL_NAVN_KNR = "KNr";
+
+    static final String TABELL_NAVN_ORDRELINJE = "Ordrelinje";
+    static final String KOL_NAVN_VARENR = "VNr";
 
     public Ordre(int ordreNr, String ordreDato, String sendtDato, String betaltDato, int kundeNr) {
         this.ordreNr = ordreNr;
@@ -71,15 +77,27 @@ public class Ordre implements Parcelable {
     }
 
     public static ArrayList<Ordre> lagOrdreListe(String jsonString) throws JSONException, NullPointerException, ParseException {
-        ArrayList<Ordre> OrdreListe = new ArrayList<Ordre>();
+        ArrayList<Ordre> ordreListe = new ArrayList<Ordre>();
         JSONObject jsonData = new JSONObject(jsonString);
-        JSONArray jsonOrdreTabell = jsonData.optJSONArray(TABELL_NAVN);
+        JSONArray jsonOrdreTabell = jsonData.optJSONArray(TABELL_NAVN_ORDRE);
         for(int i = 0; i < jsonOrdreTabell.length(); i++) {
             JSONObject jsonOrdre = (JSONObject) jsonOrdreTabell.get(i);
             Ordre ordre = new Ordre(jsonOrdre);
-            OrdreListe.add(ordre);
+            ordreListe.add(ordre);
         }
-        return OrdreListe;
+        return ordreListe;
+    }
+
+    public static ArrayList<Integer> lagVareNrListe(String jsonString) throws JSONException {
+        ArrayList<Integer> nyKundeNrListe = new ArrayList<>();
+        JSONObject jsonData = new JSONObject(jsonString);
+        JSONArray jsonOrdreTabell = jsonData.optJSONArray(TABELL_NAVN_ORDRELINJE);
+        for(int i = 0; i < jsonOrdreTabell.length(); i++) {
+            JSONObject jsonVareNr = (JSONObject) jsonOrdreTabell.get(i);
+            int vareNr = jsonVareNr.getInt(KOL_NAVN_VARENR);
+            nyKundeNrListe.add(vareNr);
+        }
+        return nyKundeNrListe;
     }
 
     @Override

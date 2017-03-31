@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/ordreItemTextView_ordreNr"
+        android:id="@+id/vareTextView_vareNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,30 +15,30 @@
         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_ordreDato"
+        android:id="@+id/vareTextView_betegnelse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ordreItemTextView_ordreNr"
+        android:layout_below="@id/vareTextView_vareNr"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_sendtDato"
+        android:id="@+id/vareTextView_pris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/ordreItemTextView_ordreDato"
+        android:layout_below="@id/vareTextView_betegnelse"
         android:padding="5dp"
         android:text="pris"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
-        android:id="@+id/ordreItemTextView_betaltDato"
+        android:id="@+id/vareTextView_katNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/ordreItemTextView_sendtDato"
+        android:layout_below="@id/vareTextView_pris"
         android:padding="5dp"
         android:text="sjanger"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
@@ -46,10 +46,19 @@
 
 
     <TextView
-        android:id="@+id/ordreItemTextView_kundeNr"
+        android:id="@+id/vareTextView_antall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ordreItemTextView_betaltDato"
+        android:layout_below="@id/vareTextView_katNr"
+        android:padding="5dp"
+        android:text="tid"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+    <TextView
+        android:id="@+id/vareTextView_hylle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vareTextView_antall"
         android:padding="5dp"
         android:text="tid"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />

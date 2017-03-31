@@ -42,7 +42,7 @@
         android:id="@+id/textView_postSted"/>
 
     <TextView
-        android:layout_below="@id/textView_tittel"
+        android:layout_below="@id/textView_postSted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView_error"/>

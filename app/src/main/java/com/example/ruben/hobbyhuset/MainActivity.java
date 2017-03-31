@@ -16,14 +16,11 @@ import android.widget.Toast;
 
 
 public class MainActivity
-        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener { //, VareFragment.OnFragmentInteractionListener {
-
-    // Priority 1: Functionality
-    // TODO: Implement VareAdapter, VareFragment
-    // TODO: Implement ShowOrdreActivity, ShowVareActivity
-    // TODO: Add VareFragment to ShowOrdreActivity
+        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {
 
     // Priority 2: Required additions
+    // TODO: Activities and fragments need proper titles
+    // TODO: All fields needs a name, format= "FieldName: FieldValue";
     // TODO: Preference manager to remember login
     // TODO: Settings menu
     // TODO: Navigation drawer to select fragments
@@ -31,6 +28,10 @@ public class MainActivity
     // Priority 3: Has to wait until functionality is there
     // TODO: Polish GUI
     // TODO: Landscape orientation
+
+    // Priority 4: Wait until everything is done
+    // TODO: Clean up imports
+    // TODO: Comment everything
 
     private static final int REQUEST_CODE_PERMISSION = 2;
 
@@ -73,18 +74,17 @@ public class MainActivity
         FragmentManager fm;
         FragmentTransaction transaction;
 
-        if (id == R.id.action_kunde) {
-            fragment = new KundeFragment();
+        switch (id) {
+            case R.id.action_kunde:
+                fragment = new KundeFragment();
+                break;
+            case R.id.action_ordre:
+                fragment = new OrdreFragment();
+                break;
+            case R.id.action_vare:
+                fragment = new VareFragment();
+                break;
         }
-
-        else if (id == R.id.action_ordre) {
-            fragment = new OrdreFragment();
-        }
-        /*
-        else if (id == R.id.action_vare) {
-            fragment = new VareFragment();
-        }
-        */
 
         if (fragment != null) {
             fm = getSupportFragmentManager();
