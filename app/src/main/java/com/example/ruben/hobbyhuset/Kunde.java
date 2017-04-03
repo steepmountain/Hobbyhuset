@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Kunde implements Parcelable {
+public class Kunde extends Item implements Parcelable {
 
     int kundeNr;
     String fornavn;
@@ -125,6 +125,21 @@ public class Kunde implements Parcelable {
             return new Kunde[size];
         }
     };
+
+    @Override
+    JSONObject toJSON() {
+        JSONObject jsonItem = new JSONObject();
+        try {
+            jsonItem.put(KOL_NAVN_KNR, getKundeNr());
+            jsonItem.put(KOL_NAVN_FORNAVN, getFornavn());
+            jsonItem.put(KOL_NAVN_ETTERNAVN, getEtternavn());
+            jsonItem.put(KOL_NAVN_ADRESSE, getAdresse());
+            jsonItem.put(KOL_NAVN_POSTNR, getPostNr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonItem;
+    }
 
 
 }

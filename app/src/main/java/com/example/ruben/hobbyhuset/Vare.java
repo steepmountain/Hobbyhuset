@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Vare implements Parcelable{
+public class Vare extends Item implements Parcelable{
 
     // Variables for Vare
     String vareNr;
@@ -138,6 +138,22 @@ public class Vare implements Parcelable{
             return new Vare[size];
         }
     };
+
+    @Override
+    JSONObject toJSON() {
+        JSONObject jsonItem = new JSONObject();
+        try {
+            jsonItem.put(KOL_NAVN_VNR, getVareNr());
+            jsonItem.put(KOL_NAVN_BETEGNELSE, getBetegnelse());
+            jsonItem.put(KOL_NAVN_PRIS, getPris());
+            jsonItem.put(KOL_NAVN_KATNR, getKatNr());
+            jsonItem.put(KOL_NAVN_ANTALL, getAntall());
+            jsonItem.put(KOL_NAVN_HYLLE, getHylle());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonItem;
+    }
 
 
 }

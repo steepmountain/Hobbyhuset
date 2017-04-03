@@ -15,7 +15,7 @@ import java.text.ParseException;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Ordre implements Parcelable {
+public class Ordre extends Item implements Parcelable{
 
     int ordreNr;
 
@@ -143,4 +143,19 @@ public class Ordre implements Parcelable {
             return new Ordre[size];
         }
     };
+
+    @Override
+    JSONObject toJSON() {
+        JSONObject jsonItem = new JSONObject();
+        try {
+            jsonItem.put(KOL_NAVN_ORDRENR, getOrdreNr());
+            jsonItem.put(KOL_NAVN_ORDREDATO, getOrdreDato());
+            jsonItem.put(KOL_NAVN_SENDTDATO, getSendtDato());
+            jsonItem.put(KOL_NAVN_BETALTDATO, getBetaltDato());
+            jsonItem.put(KOL_NAVN_KNR, getKundeNr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonItem;
+    }
 }
