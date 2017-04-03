@@ -60,7 +60,7 @@ public class HobbyhusetApi {
 
     // UPDATES
     public void updateVare(GetResponseCallback callback, Vare v) {
-        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare";
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/" + v.getVareNr();
         JSONObject updateJSON = v.toJSON();
         doExecuteUpdateCall(callback, restUrl, updateJSON);
     }
@@ -70,6 +70,11 @@ public class HobbyhusetApi {
     public void insertVare(GetResponseCallback callback, Vare v) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare";
         doExecuteInsertCall(callback, restUrl, v);
+    }
+
+    // DELETES
+    public void deleteVare(GetResponseCallback callback, int vareNr) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/ " + vareNr;
     }
 
     private void doExecuteGetCall(final GetResponseCallback callback, String restUrl) {
