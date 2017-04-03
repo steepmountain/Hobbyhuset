@@ -18,6 +18,12 @@ import android.widget.Toast;
 public class MainActivity
         extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {
 
+    // Priority 1: Essential functionality
+    // TODO: EditKundeActivity, EditOrdreActivity, EditVareActivity | VÆRE GENERELT FRAGMENT?
+    // TODO: SlettItemActivity / SlettKundeActivity, LettOrdreActivity, SlettVareActivity | VÆRE GENERELT FRAGMENT?
+    // TODO: NyItemActivity / NyKundeActivity, NyOrdreActivity, NyVareActivity | VÆRE GENERELT FRAGMENT?
+    // Metode i API for å Slettte/Endre/Ny
+
     // Priority 2: Required additions
     // TODO: Activities and fragments need proper titles
     // TODO: All fields needs a name, format= "FieldName: FieldValue";
