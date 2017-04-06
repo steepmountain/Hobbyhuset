@@ -14,10 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.ruben.hobbyhuset.kunde.KundeFragment;
-import com.example.ruben.hobbyhuset.ordre.OrdreFragment;
-import com.example.ruben.hobbyhuset.vare.VareFragment;
-
 
 public class MainActivity
         extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {

@@ -1,4 +1,4 @@
-package com.example.ruben.hobbyhuset.kunde;
+package com.example.ruben.hobbyhuset;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.ruben.hobbyhuset.API.HobbyhusetApi;
-import com.example.ruben.hobbyhuset.MainActivity;
-import com.example.ruben.hobbyhuset.API.*;
-import com.example.ruben.hobbyhuset.R;
-
 import org.json.JSONException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 
@@ -29,11 +24,11 @@ import java.util.ArrayList;
  * Use the {@link KundeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class KundeFragment extends Fragment {
+public class OrdreFragment extends Fragment {
 
-    ListView mKundeListView;
-    ArrayList<Kunde> mKundeListe = new ArrayList<>();
-    KundeAdapter mAdapter;
+    ListView mOrdreListView;
+    ArrayList<Ordre> mOrdreListe = new ArrayList<>();
+    OrdreAdapter mAdapter;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,7 +40,7 @@ public class KundeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public KundeFragment() {
+    public OrdreFragment() {
         // Required empty public constructor
     }
 
@@ -58,8 +53,8 @@ public class KundeFragment extends Fragment {
      * @return A new instance of fragment KundeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static KundeFragment newInstance(String param1, String param2) {
-        KundeFragment fragment = new KundeFragment();
+    public static OrdreFragment newInstance(String param1, String param2) {
+        OrdreFragment fragment = new OrdreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,25 +76,52 @@ public class KundeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View fragment = inflater.inflate(R.layout.fragment_kunde, container, false);
-        mKundeListView = (ListView) fragment.findViewById(R.id.listView_kunde);
+        View fragment = inflater.inflate(R.layout.fragment_ordre, container, false);
+        mOrdreListView = (ListView) fragment.findViewById(R.id.listView_ordre);
 
         // If the device is online, make a call to the API and request a list of every Kunde
         NetworkHelper helper = new NetworkHelper(getActivity());
         if (helper.isOnline()) {
             HobbyhusetApi api = new HobbyhusetApi();
-            api.getAlleKunder(new GetResponseCallback() {
-                @Override
-                void onDataReceived(String item) {
-                    try {
-                        oppdaterKundeListe(mKundeListe = Kunde.lagKundeListe(item));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
+            // Checks if the fragment launched with a bundle
+            Bundle args = this.getArguments();
+            if (args != null) {
+                int kundeNr = args.getInt("KundeNr");
+                if(kundeNr > 0) {
+                    api.getOrdreFraKunde(new GetResponseCallback() {
+                        @Override
+                        void onDataReceived(String item) {
+                            try {
+                                oppdaterOrdreListe(mOrdreListe = Ordre.lagOrdreListe(item));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, kundeNr);
                 }
+                args.clear();
+            }
 
 
-            });
+            // If bundle is empty, show all ordre
+            else {
+                api.getAlleOrdre(new GetResponseCallback() {
+                    @Override
+                    void onDataReceived(String item) {
+                        try {
+                            oppdaterOrdreListe(mOrdreListe = Ordre.lagOrdreListe(item));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
         }
         else {
             Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
@@ -110,17 +132,17 @@ public class KundeFragment extends Fragment {
     }
 
     // Updates the ListView with a new ArrayList of Kunde
-    public void oppdaterKundeListe(ArrayList<Kunde> nyKundeListe) {
+    public void oppdaterOrdreListe(ArrayList<Ordre> nyOrdreListe) {
 
-        mAdapter = new KundeAdapter(getActivity(), nyKundeListe);
-        mKundeListView.setAdapter(mAdapter);
+        mAdapter = new OrdreAdapter(getActivity(), nyOrdreListe);
+        mOrdreListView.setAdapter(mAdapter);
 
-        mKundeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mOrdreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ShowKundeActivity.class);
-                intent.putExtra("Source", MainActivity.KUNDE_CODE);
-                intent.putExtra("Kunde", mKundeListe.get(i));
+                Intent intent = new Intent(getActivity(), ShowOrdreActivity.class);
+                intent.putExtra("Source", MainActivity.ORDRE_CODE);
+                intent.putExtra("Ordre", mOrdreListe.get(i));
                 startActivity(intent);
             }
         });

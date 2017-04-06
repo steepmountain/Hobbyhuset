@@ -1,9 +1,8 @@
-package com.example.ruben.hobbyhuset.ordre;
+package com.example.ruben.hobbyhuset;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.example.ruben.hobbyhuset.item.Item;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -146,7 +145,7 @@ public class Ordre extends Item implements Parcelable{
     };
 
     @Override
-    public JSONObject toJSON() {
+    JSONObject toJSON() {
         JSONObject jsonItem = new JSONObject();
         try {
             jsonItem.put(KOL_NAVN_ORDRENR, getOrdreNr());

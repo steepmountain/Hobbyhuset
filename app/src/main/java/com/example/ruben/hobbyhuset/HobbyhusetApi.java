@@ -1,13 +1,13 @@
-package com.example.ruben.hobbyhuset.API;
+package com.example.ruben.hobbyhuset;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.example.ruben.hobbyhuset.item.Item;
-import com.example.ruben.hobbyhuset.vare.Vare;
+import android.util.Log;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Topp-nivå Controller-del av MVC. Tar input fra bruker og sender kall til RestClient
@@ -114,6 +114,12 @@ public class HobbyhusetApi {
     }
 }
 
+abstract class GetResponseCallback {
+
+    abstract void onDataReceived(String item);
+
+}
+
 abstract class PostCallback {
     /**
      * Called when a POST success response is received. <br/>
@@ -123,3 +129,17 @@ abstract class PostCallback {
 
 }
 
+class NetworkHelper {
+
+    Context mContext;
+
+    public NetworkHelper(Context context) {
+        mContext = context;
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
+    }
+}

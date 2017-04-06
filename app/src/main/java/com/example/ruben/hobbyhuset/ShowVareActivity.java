@@ -1,14 +1,11 @@
-package com.example.ruben.hobbyhuset.vare;
+package com.example.ruben.hobbyhuset;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.ruben.hobbyhuset.MainActivity;
-import com.example.ruben.hobbyhuset.NewItemActivity;
-import com.example.ruben.hobbyhuset.R;
 
 public class ShowVareActivity extends AppCompatActivity {
 
@@ -73,7 +70,7 @@ public class ShowVareActivity extends AppCompatActivity {
         intent.putExtra("Source", MainActivity.VARE_CODE);
         startActivity(intent);
     }
-/*
+
     protected void endreVare(View view) {
         Intent intent = new Intent(this, EndreVareActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
@@ -86,7 +83,7 @@ public class ShowVareActivity extends AppCompatActivity {
         intent.putExtra("Source", MainActivity.VARE_CODE);
         intent.putExtra("VareNr", currentVare);
         startActivity(intent);
-    }*/
+    }
 
     private void setVareTekst(Vare v) {
         tvTittel.setText("Vare");
