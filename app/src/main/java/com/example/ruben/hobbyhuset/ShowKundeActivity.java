@@ -84,7 +84,8 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
     }
 
     protected void nyKunde(View view) {
-        Intent intent = new Intent(this, NyKundeActivity.class);
+        Intent intent = new Intent(this, NewItemActivity.class);
+        intent.putExtra("Source", MainActivity.KUNDE_CODE);
         startActivity(intent);
     }
 

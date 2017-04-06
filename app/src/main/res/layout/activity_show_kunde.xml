@@ -12,28 +12,28 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_slettKunde"
+            android:id="@+id/button_nyKunde"
             android:onClick="nyKunde"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Slett kunde" />
-
-        <Button
-            android:id="@+id/button_nyKunde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="endreKunde"
-            android:text="Ny kunde" />
+            android:text="nyKunde" />
 
         <Button
             android:id="@+id/button_endreKunde"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="endreKunde"
+            android:text="endreKunde" />
+
+        <Button
+            android:id="@+id/button_slettKunde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="slettKunde"
-            android:text="Endre kunde" />
+            android:text="slettKunde" />
     </LinearLayout>
 
     <TextView

@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context="com.example.ruben.hobbyhuset.ShowKundeActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_nyOrdre"
+            android:onClick="nyOrdre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="slettOrdre" />
+
+        <Button
+            android:id="@+id/button_endreOrdre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="endreOrdre"
+            android:text="slettOrdre" />
+
+        <Button
+            android:id="@+id/button_slettOrdre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="slettOrdre"
+            android:text="slettOrdre" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

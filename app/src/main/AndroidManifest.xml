@@ -22,6 +22,7 @@
         <activity android:name=".ShowKundeActivity" />
         <activity android:name=".ShowOrdreActivity" />
         <activity android:name=".ShowVareActivity" />
+        <activity android:name=".NewItemActivity"></activity>
     </application>
 
 </manifest>

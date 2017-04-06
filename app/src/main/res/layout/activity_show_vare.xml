@@ -2,7 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_nyVare"
+            android:onClick="nyVare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="nyVare" />
+
+        <Button
+            android:id="@+id/button_endreVare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="endreVare"
+            android:text="endreVare" />
+
+        <Button
+            android:id="@+id/button_slettVare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="slettVare"
+            android:text="slettVare" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView_tittel"
         android:layout_width="wrap_content"
