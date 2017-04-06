@@ -7,11 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ShowKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
+
+    private final static String TITLE = "Kunde";
 
     TextView tvTittel;
     TextView tvNavn;
@@ -25,6 +28,7 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
     ArrayList<Ordre> mOrdreArray;
     OrdreAdapter mAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,8 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
         tvAdresse = (TextView) findViewById(R.id.textView_adresse);
         tvPostNr = (TextView) findViewById(R.id.textView_postNr);
         tvPostSted = (TextView) findViewById(R.id.textView_postSted);
+
+        getSupportActionBar().setTitle(TITLE);
 
         String error = "";
 

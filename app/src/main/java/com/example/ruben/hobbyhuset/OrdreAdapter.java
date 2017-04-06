@@ -1,6 +1,7 @@
 package com.example.ruben.hobbyhuset;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,12 +61,12 @@ public class OrdreAdapter extends BaseAdapter {
         }
 
         Ordre item = mOrdre.get(position);
-        vh.tvOrdreNr.setText(item.getOrdreNr() + "");
-        vh.tvOrdreDato.setText(item.getOrdreDato());
-        vh.tvSendtDato.setText(item.getSendtDato());
-        vh.tvBetaltDato.setText(item.getBetaltDato());
-        vh.tvKundeNr.setText(item.getKundeNr() + "");
-
+        vh.tvOrdreNr.setText("OrdreNr : " + item.getOrdreNr() + "");
+        vh.tvOrdreDato.setText("Ordredato : " + item.getOrdreDato());
+        vh.tvSendtDato.setText("Sendtdato : " + item.getSendtDato());
+        vh.tvBetaltDato.setText("Betaltdato : " + item.getBetaltDato());
+        vh.tvKundeNr.setText("KundeNr : " + item.getKundeNr() + "");
+        Log.d("OrdreAdapter", "I wrote text for " + item.getKundeNr() + "!");
         return convertView;
     }
 

@@ -115,6 +115,12 @@ public class RestClient {
 
             return response;
         }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mCallback.onTaskComplete(result);
+            super.onPostExecute(result);
+        }
     }
 
     // Class for performing UPDATE
@@ -168,6 +174,12 @@ public class RestClient {
             }
 
             return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mCallback.onTaskComplete(result);
+            super.onPostExecute(result);
         }
     }
 
@@ -223,6 +235,12 @@ public class RestClient {
             }
 
             return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mCallback.onTaskComplete(result);
+            super.onPostExecute(result);
         }
     }
 

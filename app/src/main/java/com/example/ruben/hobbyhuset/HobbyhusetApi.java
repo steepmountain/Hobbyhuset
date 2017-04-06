@@ -53,7 +53,7 @@ public class HobbyhusetApi {
     }
 
     public void getVare(GetResponseCallback callback, int vareNr) {
-        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare?filter=VNr,eq," + vareNr + "&transform=1";
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/" + vareNr;
         doExecuteGetCall(callback, restUrl);
     }
 

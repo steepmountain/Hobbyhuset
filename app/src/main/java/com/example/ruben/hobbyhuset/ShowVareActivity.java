@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 public class ShowVareActivity extends AppCompatActivity {
 
+    private final static String TITLE = "Vare";
+
     TextView tvTittel;
     TextView tvVNr;
     TextView tvBetegnelse;
@@ -30,6 +32,8 @@ public class ShowVareActivity extends AppCompatActivity {
         tvKatNr = (TextView) findViewById(R.id.textView_katNr);
         tvAntall= (TextView) findViewById(R.id.textView_antall);
         tvHylle = (TextView) findViewById(R.id.textView_hylle);
+
+        getSupportActionBar().setTitle(TITLE);
 
         String error = "";
 

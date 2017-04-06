@@ -61,12 +61,12 @@ public class VareAdapter extends BaseAdapter {
         }
 
         Vare item = mVare.get(position);
-        vh.tvVareNr.setText(item.getVareNr() + "");
-        vh.tvBetegnelse.setText(item.getBetegnelse());
-        vh.tvPris.setText(item.getPris() + "");
-        vh.tvKatNr.setText(item.getKatNr() + ""); // TODO: integrer med klassen Kategori
-        vh.tvAntall.setText(item.getAntall() + "");
-        vh.tvHylle.setText(item.getHylle());
+        vh.tvVareNr.setText("VareNr : " + item.getVareNr() + "");
+        vh.tvBetegnelse.setText("Betegnelse : " + item.getBetegnelse());
+        vh.tvPris.setText("Pris : " + item.getPris() + "");
+        vh.tvKatNr.setText("KategoriNr : " + item.getKatNr() + ""); // TODO: integrer med klassen Kategori
+        vh.tvAntall.setText("Antall : " +item.getAntall() + "");
+        vh.tvHylle.setText("Hylle : " + item.getHylle());
 
         return convertView;
     }

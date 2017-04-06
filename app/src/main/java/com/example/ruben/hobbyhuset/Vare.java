@@ -2,6 +2,7 @@ package com.example.ruben.hobbyhuset;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,6 +72,7 @@ public class Vare extends Item implements Parcelable{
     }
 
     public Vare(JSONObject jsonVare) {
+        Log.d("Vare", "JSON=" + jsonVare.toString());
         this.vareNr = jsonVare.optString(KOL_NAVN_VNR);
         this.betegnelse = jsonVare.optString(KOL_NAVN_BETEGNELSE);
         this.pris = jsonVare.optDouble(KOL_NAVN_PRIS);

@@ -14,8 +14,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -78,13 +80,12 @@ public class VareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View fragment = inflater.inflate(R.layout.fragment_vare, container, false);
         mVareListView = (ListView) fragment.findViewById(R.id.listView_vare);
         // If the device is online, make a call to the API and request a list of every Kunde
         NetworkHelper helper = new NetworkHelper(getActivity());
         if (helper.isOnline()) {
-            HobbyhusetApi api = new HobbyhusetApi();
+            final HobbyhusetApi api = new HobbyhusetApi();
 
             Bundle args = this.getArguments();
 
@@ -93,32 +94,33 @@ public class VareFragment extends Fragment {
                 int ordreNr = args.getInt("OrdreNr"); // TODO: check for null value
 
                 // Updates the list of VareNr based on the OrdreNr contained in bundle
-                api.getOrdrelinje(new GetResponseCallback() { // virker
+                api.getOrdrelinje(new GetResponseCallback() {
                     @Override
                     void onDataReceived(String item) {
                         try {
                             mVareNrListe = Ordre.lagVareNrListe(item);
+
+                            // Fetches each item from ORdrelinje and adds to mVareListe
+                            for (int i = 0; i < mVareNrListe.size(); i++) {
+                                api.getVare(new GetResponseCallback() {
+                                    @Override
+                                    void onDataReceived(String item) {
+                                        try {
+                                            Vare v = new Vare(new JSONObject(item));
+                                            mVareListe.add(v);
+                                            oppdaterVareListe(mVareListe);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, mVareNrListe.get(i));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 }, ordreNr);
-
-                // Uses the list of VareNr to create a list of Vare
-                for (int i = 0; i < mVareNrListe.size(); i++) {
-
-                    api.getVare(new GetResponseCallback() {
-                        @Override
-                        void onDataReceived(String item) {
-                            try {
-                                oppdaterVareListe(mVareListe = Vare.lagVareListe(item));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, mVareNrListe.get(i));
-                }
-
+                args.clear();
             }
 
             // If bundle contains no arguemnts, display all Vare

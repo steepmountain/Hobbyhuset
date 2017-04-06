@@ -60,11 +60,11 @@ public class KundeAdapter extends BaseAdapter {
         }
 
         Kunde item = mKunder.get(position);
-        vh.tvKundeNr.setText(item.getKundeNr() + ""); // Must be made into string to avoid Android thinking it's a resource ID
-        vh.tvFornavn.setText(item.getFornavn());
-        vh.tvEtternavn.setText(item.getEtternavn());
-        vh.tvAdresse.setText(item.getAdresse());
-        vh.tvPostNr.setText(item.getPostNr() + ""); // Must be made into string to avoid Android thinking it's a resource ID
+        vh.tvKundeNr.setText("KundeNr : " + item.getKundeNr() + ""); // Must be made into string to avoid Android thinking it's a resource ID
+        vh.tvFornavn.setText("Fornavn : " + item.getFornavn());
+        vh.tvEtternavn.setText("Etternavn : " + item.getEtternavn());
+        vh.tvAdresse.setText("Adresse : " + item.getAdresse());
+        vh.tvPostNr.setText("PostNr : " + item.getPostNr() + ""); // Must be made into string to avoid Android thinking it's a resource ID
 
         return convertView;
     }

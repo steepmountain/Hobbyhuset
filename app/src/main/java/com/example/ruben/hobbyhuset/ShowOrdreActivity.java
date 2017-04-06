@@ -7,11 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ShowOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
+
+    private final static String TITLE = "Ordre";
 
     TextView tvTittel;
     TextView tvOrdreNr;
@@ -38,12 +41,13 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
         tvBetaltDato = (TextView) findViewById(R.id.textView_betaltDato);
         tvKundeNr = (TextView) findViewById(R.id.textView_kundeNr);
 
+        getSupportActionBar().setTitle(TITLE);
+
         String error = "";
 
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null && intent.getIntExtra("Source", -1) == MainActivity.ORDRE_CODE) {
-
             // Tries to make a kunde-object out of the incoming data
             Ordre o = intent.getParcelableExtra("Ordre");
             if (o != null) {
@@ -66,16 +70,17 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
         }
     }
 
+    // Sets text for current Ordre
     private void setOrdreTekst(Ordre o) {
-        tvTittel.setText("Ordre");
-        tvOrdreNr.setText(o.getOrdreNr() + "");
-        tvOrdreDato.setText(o.getOrdreDato());
-        tvSendtDato.setText(o.getSendtDato());
-        tvBetaltDato.setText(o.getBetaltDato());
-        tvKundeNr.setText(o.getKundeNr()+ "");
 
+        tvOrdreNr.setText("OrdreNr : " + o.getOrdreNr() + "");
+        tvOrdreDato.setText("Ordredato : " + o.getOrdreDato());
+        tvSendtDato.setText("Sendtdato : " + o.getSendtDato());
+        tvBetaltDato.setText("Betaltdato : " + o.getBetaltDato());
+        tvKundeNr.setText("KundeNr : " + o.getKundeNr() + "");
     }
 
+    // Gets every Vare in current Ordre
     private void getOrdreVarer(Ordre o) {
         Bundle args = new Bundle();
         args.putInt("OrdreNr", o.getOrdreNr());

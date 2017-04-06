@@ -22,7 +22,6 @@ public class MainActivity
     // TODO: EditKundeActivity, EditOrdreActivity, EditVareActivity | VÆRE GENERELT FRAGMENT?
     // TODO: SlettItemActivity / SlettKundeActivity, LettOrdreActivity, SlettVareActivity | VÆRE GENERELT FRAGMENT?
     // TODO: NyItemActivity / NyKundeActivity, NyOrdreActivity, NyVareActivity | VÆRE GENERELT FRAGMENT?
-    // Metode i API for å Slettte/Endre/Ny
 
     // Priority 2: Required additions
     // TODO: Activities and fragments need proper titles
@@ -39,7 +38,8 @@ public class MainActivity
     // TODO: Clean up imports
     // TODO: Comment everything
 
-    private static final int REQUEST_CODE_PERMISSION = 2;
+    private static final int REQUEST_CODE_INTERNET = 1;
+    private static final int REQUEST_CODE_ACCESS_NETWORK_STATE = 2;
 
     public static final int KUNDE_CODE = 0;
     public static final int ORDRE_CODE = 1;
@@ -50,17 +50,20 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // checks if permissions are granted
+        // checks if permissions are granted, no callback as the whole app fails if it doesn't have these permissions
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)!= PackageManager.PERMISSION_GRANTED)
                 && (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)!= PackageManager.PERMISSION_GRANTED)) {
             // asks for permission
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, REQUEST_CODE_PERMISSION);
+                    new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_CODE_ACCESS_NETWORK_STATE);
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.INTERNET}, REQUEST_CODE_INTERNET);
         }
 
         // Starts KundeFragment as default fragment when the app launches
         startFragment(R.id.action_kunde);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
