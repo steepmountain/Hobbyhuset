@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class ShowOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
 
     private final static String TITLE = "Ordre";
+    private int currentOrdre;
 
     TextView tvTittel;
     TextView tvOrdreNr;
@@ -53,6 +55,7 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
             if (o != null) {
                 setOrdreTekst(o);
                 getOrdreVarer(o);
+                currentOrdre = o.getOrdreNr();
             }
             else {
                 error += "Fant ingen ordre.";
@@ -68,6 +71,25 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
             tvError = (TextView) findViewById(R.id.textView_error);
             tvError.setText(error);
         }
+    }
+
+    protected void nyOrdre(View view) {
+        Intent intent = new Intent(this, NyOrdreActivity.class);
+        startActivity(intent);
+    }
+
+    protected void endreOrdre(View view) {
+        Intent intent = new Intent(this, EndreOrdreActivity.class);
+        intent.putExtra("Source", MainActivity.ORDRE_CODE);
+        intent.putExtra("OrdreNr", currentOrdre);
+        startActivity(intent);
+    }
+
+    protected void slettOrdre(View view) {
+        Intent intent = new Intent(this, SlettOrdreActivity.class);
+        intent.putExtra("Source", MainActivity.ORDRE_CODE);
+        intent.putExtra("OrdreNr", currentOrdre);
+        startActivity(intent);
     }
 
     // Sets text for current Ordre

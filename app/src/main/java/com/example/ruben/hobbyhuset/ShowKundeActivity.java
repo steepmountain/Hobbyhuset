@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -15,7 +17,11 @@ import java.util.ArrayList;
 public class ShowKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
 
     private final static String TITLE = "Kunde";
+    private int currentKunde;
 
+    Button btnNyKunde;
+    Button btnEndreKunde;
+    Button btnSlettKunde;
     TextView tvTittel;
     TextView tvNavn;
     TextView tvKundeNr;
@@ -35,6 +41,10 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
         setContentView(R.layout.activity_show_kunde);
 
         // Prepares XML
+        btnNyKunde = (Button) findViewById(R.id.button_nyKunde);
+        btnEndreKunde = (Button) findViewById(R.id.button_endreKunde);
+        btnSlettKunde = (Button) findViewById(R.id.button_slettKunde);
+
         tvTittel = (TextView) findViewById(R.id.textView_tittel);
         tvNavn = (TextView) findViewById(R.id.textView_navn);
         tvKundeNr = (TextView) findViewById(R.id.textView_kundeNr);
@@ -55,6 +65,7 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
             if (k != null) {
                 setKundeText(k);
                 getKundeOrdre(k);
+                currentKunde = k.getKundeNr();
             }
             else {
                 error += "Fant ingen kunde.";
@@ -70,6 +81,25 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
             tvError = (TextView) findViewById(R.id.textView_error);
             tvError.setText(error);
         }
+    }
+
+    protected void nyKunde(View view) {
+        Intent intent = new Intent(this, NyKundeActivity.class);
+        startActivity(intent);
+    }
+
+    protected void endreKunde(View view) {
+        Intent intent = new Intent(this, EndreKundeActivity.class);
+        intent.putExtra("Source", MainActivity.KUNDE_CODE);
+        intent.putExtra("KundeNr", currentKunde);
+        startActivity(intent);
+    }
+
+    protected void slettKunde(View view) {
+        Intent intent = new Intent(this, SlettKundeActivity.class);
+        intent.putExtra("Source", MainActivity.KUNDE_CODE);
+        intent.putExtra("KundeNr", currentKunde);
+        startActivity(intent);
     }
 
     private void setKundeText(Kunde k) {
@@ -97,4 +127,5 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

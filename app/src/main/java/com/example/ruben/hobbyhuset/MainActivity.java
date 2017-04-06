@@ -21,7 +21,7 @@ public class MainActivity
     // Priority 1: Essential functionality
     // TODO: EditKundeActivity, EditOrdreActivity, EditVareActivity | VÆRE GENERELT FRAGMENT?
     // TODO: SlettItemActivity / SlettKundeActivity, LettOrdreActivity, SlettVareActivity | VÆRE GENERELT FRAGMENT?
-    // TODO: NyItemActivity / NyKundeActivity, NyOrdreActivity, NyVareActivity | VÆRE GENERELT FRAGMENT?
+    // TODO: NyItemActivity / NyKundeActivity, NyOrdreActivity, NyVareActivity
 
     // Priority 2: Required additions
     // TODO: Activities and fragments need proper titles

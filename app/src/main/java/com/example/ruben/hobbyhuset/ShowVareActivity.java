@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class ShowVareActivity extends AppCompatActivity {
 
     private final static String TITLE = "Vare";
+    private String currentVare;
 
     TextView tvTittel;
     TextView tvVNr;
@@ -45,6 +47,7 @@ public class ShowVareActivity extends AppCompatActivity {
             Vare v = intent.getParcelableExtra("Vare");
             if (v != null) {
                 setVareTekst(v);
+                currentVare = v.getVareNr();
             }
             else {
                 error += "Fant ingen vare.";
@@ -60,6 +63,25 @@ public class ShowVareActivity extends AppCompatActivity {
             tvError = (TextView) findViewById(R.id.textView_error);
             tvError.setText(error);
         }
+    }
+
+    protected void nyVare(View view) {
+        Intent intent = new Intent(this, NyVareActivity.class);
+        startActivity(intent);
+    }
+
+    protected void endreVare(View view) {
+        Intent intent = new Intent(this, EndreVareActivity.class);
+        intent.putExtra("Source", MainActivity.ORDRE_CODE);
+        intent.putExtra("VareNr", currentVare);
+        startActivity(intent);
+    }
+
+    protected void slettVare(View view) {
+        Intent intent = new Intent(this, SlettVareActivity.class);
+        intent.putExtra("Source", MainActivity.ORDRE_CODE);
+        intent.putExtra("VareNr", currentVare);
+        startActivity(intent);
     }
 
     private void setVareTekst(Vare v) {
