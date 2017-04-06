@@ -1,4 +1,4 @@
-package com.example.ruben.hobbyhuset;
+package com.example.ruben.hobbyhuset.item;
 
 import org.json.JSONObject;
 
@@ -8,5 +8,5 @@ import org.json.JSONObject;
 
 public abstract class Item {
 
-    abstract JSONObject toJSON();
+    public abstract JSONObject toJSON();
 }

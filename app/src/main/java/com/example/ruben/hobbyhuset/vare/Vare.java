@@ -1,8 +1,10 @@
-package com.example.ruben.hobbyhuset;
+package com.example.ruben.hobbyhuset.vare;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+
+import com.example.ruben.hobbyhuset.item.Item;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,7 +144,7 @@ public class Vare extends Item implements Parcelable{
     };
 
     @Override
-    JSONObject toJSON() {
+    public JSONObject toJSON() {
         JSONObject jsonItem = new JSONObject();
         try {
             jsonItem.put(KOL_NAVN_VNR, getVareNr());

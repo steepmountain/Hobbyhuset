@@ -22,7 +22,7 @@ public class NewItemActivity extends AppCompatActivity {
             // checks which class sent the nyItem request
             int origin = intent.getIntExtra("Source", -1);
             switch (origin) {
-
+/*
                 case MainActivity.KUNDE_CODE: {
                     Fragment fragment = new NewKundeFragment();
                     FragmentManager fm = getSupportFragmentManager();
@@ -49,7 +49,7 @@ public class NewItemActivity extends AppCompatActivity {
                     transaction.commit();
                     break;
                 }
-
+*/
                 default : {
                     Toast.makeText(this, "Invalid origin.", Toast.LENGTH_LONG);
                 }

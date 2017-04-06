@@ -1,6 +1,8 @@
-package com.example.ruben.hobbyhuset;
+package com.example.ruben.hobbyhuset.API;
 
 import android.os.AsyncTask;
+
+import com.example.ruben.hobbyhuset.item.Item;
 
 import org.json.JSONObject;
 
@@ -11,7 +13,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Bunn-nivå Model-del av MVC. Gjør kall mot REST Api med kall fra Controller

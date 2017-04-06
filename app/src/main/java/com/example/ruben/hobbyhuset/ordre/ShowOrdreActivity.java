@@ -1,4 +1,4 @@
-package com.example.ruben.hobbyhuset;
+package com.example.ruben.hobbyhuset.ordre;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,10 +7,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.ruben.hobbyhuset.MainActivity;
+import com.example.ruben.hobbyhuset.NewItemActivity;
+import com.example.ruben.hobbyhuset.R;
+import com.example.ruben.hobbyhuset.vare.Vare;
+import com.example.ruben.hobbyhuset.vare.VareAdapter;
+import com.example.ruben.hobbyhuset.vare.VareFragment;
+
 import java.util.ArrayList;
 
 public class ShowOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
@@ -78,7 +85,7 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         startActivity(intent);
     }
-
+/*
     protected void endreOrdre(View view) {
         Intent intent = new Intent(this, EndreOrdreActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
@@ -92,7 +99,7 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
         intent.putExtra("OrdreNr", currentOrdre);
         startActivity(intent);
     }
-
+*/
     // Sets text for current Ordre
     private void setOrdreTekst(Ordre o) {
 
