@@ -70,20 +70,20 @@ public class ShowVareActivity extends AppCompatActivity {
         intent.putExtra("Source", MainActivity.VARE_CODE);
         startActivity(intent);
     }
-
+/*
     protected void endreVare(View view) {
-        Intent intent = new Intent(this, EndreVareActivity.class);
+        Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
         intent.putExtra("VareNr", currentVare);
         startActivity(intent);
     }
 
     protected void slettVare(View view) {
-        Intent intent = new Intent(this, SlettVareActivity.class);
+        Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
         intent.putExtra("VareNr", currentVare);
         startActivity(intent);
-    }
+    }*/
 
     private void setVareTekst(Vare v) {
         tvTittel.setText("Vare");

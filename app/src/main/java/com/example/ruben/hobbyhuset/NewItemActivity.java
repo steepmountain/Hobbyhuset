@@ -1,14 +1,16 @@
 package com.example.ruben.hobbyhuset;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
-public class NewItemActivity extends AppCompatActivity {
+public class NewItemActivity extends AppCompatActivity implements NewKundeFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class NewItemActivity extends AppCompatActivity {
                     transaction.commit();
                     break;
                 }
-
+/*
                 case MainActivity.ORDRE_CODE: {
                     Fragment fragment = new NewOrdreFragment();
                     FragmentManager fm = getSupportFragmentManager();
@@ -48,7 +50,7 @@ public class NewItemActivity extends AppCompatActivity {
                     transaction.replace(R.id.contentFragment, fragment);
                     transaction.commit();
                     break;
-                }
+                }*/
 
                 default : {
                     Toast.makeText(this, "Invalid origin.", Toast.LENGTH_LONG);
@@ -58,5 +60,10 @@ public class NewItemActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "Noe gikk galt med sendingen av data", Toast.LENGTH_LONG);
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

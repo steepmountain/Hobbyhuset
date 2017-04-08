@@ -73,25 +73,26 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
         }
     }
 
+
     protected void nyOrdre(View view) {
         Intent intent = new Intent(this, NewItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         startActivity(intent);
     }
-
+/*
     protected void endreOrdre(View view) {
-        Intent intent = new Intent(this, EndreOrdreActivity.class);
+        Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         intent.putExtra("OrdreNr", currentOrdre);
         startActivity(intent);
     }
 
     protected void slettOrdre(View view) {
-        Intent intent = new Intent(this, SlettOrdreActivity.class);
+        Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         intent.putExtra("OrdreNr", currentOrdre);
         startActivity(intent);
-    }
+    }*/
 
     // Sets text for current Ordre
     private void setOrdreTekst(Ordre o) {

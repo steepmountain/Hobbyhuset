@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ruben.hobbyhuset.NewKundeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView_tittel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="@+id/textView_fornavnLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_tittel"/>
+
+    <EditText
+        android:inputType="textCapWords"
+        android:id="@+id/editText_fornavn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_fornavnLabel"/>
+
+    <TextView
+
+        android:id="@+id/textView_etternavnLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_fornavn"/>
+
+    <EditText
+        android:inputType="textCapWords"
+        android:id="@+id/editText_etternavn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_etternavnLabel"/>
+
+    <TextView
+        android:id="@+id/textView_adresseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_etternavn"/>
+
+    <EditText
+        android:inputType="textCapWords"
+        android:id="@+id/editText_adresse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_adresseLabel"/>
+
+    <TextView
+        android:id="@+id/textView_postNrLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_adresse"/>
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/editText_postNr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_postNrLabel"/>
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_postNr"
+        android:text="Lag ny kunde" />
+
+</RelativeLayout>

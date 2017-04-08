@@ -22,7 +22,7 @@ public class Kunde extends Item implements Parcelable {
     String fornavn;
     String etternavn;
     String adresse; // TODO: Make Class "adresse"
-    int postNr; // TODO: make Class "Poststed"
+    int postNr; // TODO: make Class "Poststed" OR make String so it can read leading 0
 
     public int getKundeNr() {
         return kundeNr;
@@ -53,6 +53,13 @@ public class Kunde extends Item implements Parcelable {
 
     public Kunde(int kundeNr, String fornavn, String etternavn, String adresse, int postNr) {
         this.kundeNr = kundeNr;
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.adresse = adresse;
+        this.postNr = postNr;
+    }
+
+    public Kunde(String fornavn, String etternavn, String adresse, int postNr) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.adresse = adresse;

@@ -88,20 +88,20 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         startActivity(intent);
     }
-
+/*
     protected void endreKunde(View view) {
-        Intent intent = new Intent(this, EndreKundeActivity.class);
+        Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         intent.putExtra("KundeNr", currentKunde);
         startActivity(intent);
     }
 
     protected void slettKunde(View view) {
-        Intent intent = new Intent(this, SlettKundeActivity.class);
+        Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         intent.putExtra("KundeNr", currentKunde);
         startActivity(intent);
-    }
+    }*/
 
     private void setKundeText(Kunde k) {
         tvTittel.setText("Kunde");
