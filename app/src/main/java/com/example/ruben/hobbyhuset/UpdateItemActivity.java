@@ -7,15 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-public class NewItemActivity extends AppCompatActivity implements NewKundeFragment.OnFragmentInteractionListener {
+public class UpdateItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_item);
+        setContentView(R.layout.activity_update_item);
 
         // Checks incoming intent
         Intent intent = getIntent();
@@ -26,7 +25,10 @@ public class NewItemActivity extends AppCompatActivity implements NewKundeFragme
             switch (origin) {
 
                 case MainActivity.KUNDE_CODE: {
-                    Fragment fragment = new NewKundeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("KundeNr", intent.getIntExtra("KundeNr", -1));
+                    Fragment fragment = new UpdateKundeFragment();
+                    fragment.setArguments(bundle);
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
                     transaction.replace(R.id.contentFragment, fragment);
@@ -62,8 +64,4 @@ public class NewItemActivity extends AppCompatActivity implements NewKundeFragme
         }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }

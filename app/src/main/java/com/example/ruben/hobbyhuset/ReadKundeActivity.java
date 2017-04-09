@@ -7,14 +7,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class ShowKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
+public class ReadKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
 
     private final static String TITLE = "Kunde";
     private int currentKunde;
@@ -84,18 +83,18 @@ public class ShowKundeActivity extends AppCompatActivity implements OrdreFragmen
     }
 
     protected void nyKunde(View view) {
-        Intent intent = new Intent(this, NewItemActivity.class);
+        Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         startActivity(intent);
     }
-/*
+
     protected void endreKunde(View view) {
         Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         intent.putExtra("KundeNr", currentKunde);
         startActivity(intent);
     }
-
+/*
     protected void slettKunde(View view) {
         Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);

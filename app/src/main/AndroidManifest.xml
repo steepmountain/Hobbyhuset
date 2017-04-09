@@ -19,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowKundeActivity" />
-        <activity android:name=".ShowOrdreActivity" />
-        <activity android:name=".ShowVareActivity" />
-        <activity android:name=".NewItemActivity"></activity>
+        <activity android:name=".ReadKundeActivity" />
+        <activity android:name=".ReadOrdreActivity" />
+        <activity android:name=".ReadVareActivity" />
+        <activity android:name=".CreateItemActivity" />
+        <activity android:name=".UpdateItemActivity"></activity>
     </application>
 
 </manifest>

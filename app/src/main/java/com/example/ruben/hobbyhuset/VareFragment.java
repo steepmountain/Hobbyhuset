@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -156,7 +154,7 @@ public class VareFragment extends Fragment {
         mVareListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ShowVareActivity.class);
+                Intent intent = new Intent(getActivity(), ReadVareActivity.class);
                 intent.putExtra("Source", MainActivity.VARE_CODE);
                 intent.putExtra("Vare", mVareListe.get(i));
                 startActivity(intent);

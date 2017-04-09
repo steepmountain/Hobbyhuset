@@ -7,13 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class ShowOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
+public class ReadOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
 
     private final static String TITLE = "Ordre";
     private int currentOrdre;
@@ -75,7 +74,7 @@ public class ShowOrdreActivity extends AppCompatActivity implements VareFragment
 
 
     protected void nyOrdre(View view) {
-        Intent intent = new Intent(this, NewItemActivity.class);
+        Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         startActivity(intent);
     }

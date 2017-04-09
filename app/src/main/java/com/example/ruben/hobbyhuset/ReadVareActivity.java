@@ -1,13 +1,12 @@
 package com.example.ruben.hobbyhuset;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class ShowVareActivity extends AppCompatActivity {
+public class ReadVareActivity extends AppCompatActivity {
 
     private final static String TITLE = "Vare";
     private String currentVare;
@@ -66,7 +65,7 @@ public class ShowVareActivity extends AppCompatActivity {
     }
 
     protected void nyVare(View view) {
-        Intent intent = new Intent(this, NewItemActivity.class);
+        Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
         startActivity(intent);
     }

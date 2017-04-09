@@ -140,7 +140,7 @@ public class OrdreFragment extends Fragment {
         mOrdreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ShowOrdreActivity.class);
+                Intent intent = new Intent(getActivity(), ReadOrdreActivity.class);
                 intent.putExtra("Source", MainActivity.ORDRE_CODE);
                 intent.putExtra("Ordre", mOrdreListe.get(i));
                 startActivity(intent);

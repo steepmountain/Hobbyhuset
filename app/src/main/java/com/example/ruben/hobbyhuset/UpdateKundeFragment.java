@@ -1,34 +1,24 @@
 package com.example.ruben.hobbyhuset;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-import org.json.JSONException;
-import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link KundeFragment.OnFragmentInteractionListener} interface
+ * {@link UpdateKundeFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link KundeFragment#newInstance} factory method to
+ * Use the {@link UpdateKundeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class KundeFragment extends Fragment {
-
-    ListView mKundeListView;
-    ArrayList<Kunde> mKundeListe = new ArrayList<>();
-    KundeAdapter mAdapter;
-
+public class UpdateKundeFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -37,9 +27,12 @@ public class KundeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // TODO: Sjekk om er større enn -1
+    private int currentKunde;
+
     private OnFragmentInteractionListener mListener;
 
-    public KundeFragment() {
+    public UpdateKundeFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +42,11 @@ public class KundeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment KundeFragment.
+     * @return A new instance of fragment UpdateKundeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static KundeFragment newInstance(String param1, String param2) {
-        KundeFragment fragment = new KundeFragment();
+    public static UpdateKundeFragment newInstance(String param1, String param2) {
+        UpdateKundeFragment fragment = new UpdateKundeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +57,6 @@ public class KundeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -74,57 +66,17 @@ public class KundeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View fragment = inflater.inflate(R.layout.fragment_kunde, container, false);
-        mKundeListView = (ListView) fragment.findViewById(R.id.listView_kunde);
-
-        // If the device is online, make a call to the API and request a list of every Kunde
-        NetworkHelper helper = new NetworkHelper(getActivity());
-        if (helper.isOnline()) {
-            HobbyhusetApi api = new HobbyhusetApi();
-            api.getAlleKunder(new GetResponseCallback() {
-                @Override
-                void onDataReceived(String item) {
-                    try {
-                        oppdaterKundeListe(mKundeListe = Kunde.lagKundeListe(item));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-            });
-        }
-        else {
-            Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
-        }
-
         // Inflate the layout for this fragment
-        return fragment;
+        int currentKunde =  getArguments().getInt("KundeNr");
+        return inflater.inflate(R.layout.fragment_update_kunde, container, false);
     }
 
-    // Updates the ListView with a new ArrayList of Kunde
-    public void oppdaterKundeListe(ArrayList<Kunde> nyKundeListe) {
-
-        mAdapter = new KundeAdapter(getActivity(), nyKundeListe);
-        mKundeListView.setAdapter(mAdapter);
-
-        mKundeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ReadKundeActivity.class);
-                intent.putExtra("Source", MainActivity.KUNDE_CODE);
-                intent.putExtra("Kunde", mKundeListe.get(i));
-                startActivity(intent);
-            }
-        });
-
-        mAdapter.notifyDataSetChanged();
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
-
-
-    // Checks if the device is online
-
 
     @Override
     public void onAttach(Context context) {
