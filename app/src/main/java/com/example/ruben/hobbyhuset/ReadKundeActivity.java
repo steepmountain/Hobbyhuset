@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -94,13 +95,13 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
         intent.putExtra("KundeNr", currentKunde);
         startActivity(intent);
     }
-/*
+
     protected void slettKunde(View view) {
         Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
         intent.putExtra("KundeNr", currentKunde);
         startActivity(intent);
-    }*/
+    }
 
     private void setKundeText(Kunde k) {
         tvTittel.setText("Kunde");

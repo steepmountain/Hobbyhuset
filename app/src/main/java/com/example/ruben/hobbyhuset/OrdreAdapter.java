@@ -66,7 +66,6 @@ public class OrdreAdapter extends BaseAdapter {
         vh.tvSendtDato.setText("Sendtdato : " + item.getSendtDato());
         vh.tvBetaltDato.setText("Betaltdato : " + item.getBetaltDato());
         vh.tvKundeNr.setText("KundeNr : " + item.getKundeNr() + "");
-        Log.d("OrdreAdapter", "I wrote text for " + item.getKundeNr() + "!");
         return convertView;
     }
 

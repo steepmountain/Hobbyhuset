@@ -1,12 +1,21 @@
 package com.example.ruben.hobbyhuset;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.Network;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -28,7 +37,26 @@ public class UpdateKundeFragment extends Fragment {
     private String mParam2;
 
     // TODO: Sjekk om er større enn -1
-    private int currentKunde;
+    private int currentKundeNr;
+    private Kunde currentKunde;
+
+    TextView tvTitle;
+    TextView tvFornavnLabel;
+    TextView etFornavn;
+    TextView tvEtternavnLabel;
+    EditText etEtternavn;
+    TextView tvAdresseLabel;
+    EditText etAdresse;
+    TextView tvPostNrLabel;
+    EditText etPostNr;
+    Button btnSubmit;
+    private Activity mActivity;
+
+    private static int VARCHAR_MAX = 256;
+    private static int POSTNR_LENGTH = 4;
+
+    EditText[] inputFields;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,14 +95,80 @@ public class UpdateKundeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        int currentKunde =  getArguments().getInt("KundeNr");
-        return inflater.inflate(R.layout.fragment_update_kunde, container, false);
+        View fragment = inflater.inflate(R.layout.fragment_new_kunde, container, false);
+
+        currentKundeNr = getArguments().getInt("KundeNr");
+        Log.d("KundeNr", currentKundeNr + "");
+        NetworkHelper helper = new NetworkHelper(getContext());
+        if (helper.isOnline()) {
+            HobbyhusetApi api = new HobbyhusetApi();
+            api.getKunde(new GetResponseCallback() {
+                @Override
+                void onDataReceived(String item) {
+                    Log.d("dataReceived", item);
+                    setCurrentKunde(item);
+                }
+            }, currentKundeNr);
+        }
+
+        mActivity = getActivity();
+        inputFields = new EditText[4];
+
+        // Title for newKunde
+        tvTitle = (TextView) mActivity.findViewById(R.id.textView_tittel);
+
+        // Inits label and edittext for fornavn
+        tvFornavnLabel = (TextView) fragment.findViewById(R.id.textView_fornavnLabel);
+        tvFornavnLabel.setText("Fornavn");
+        etFornavn = (EditText) fragment.findViewById(R.id.editText_fornavn);
+        etFornavn.setText(currentKunde.getFornavn());
+        inputFields[0] = (EditText) etFornavn;
+
+        tvEtternavnLabel = (TextView) fragment.findViewById(R.id.textView_etternavnLabel);
+        tvEtternavnLabel.setText("Etternavn");
+        etEtternavn = (EditText) fragment.findViewById(R.id.editText_etternavn);
+        etEtternavn.setText(currentKunde.getEtternavn());
+        inputFields[1] = (EditText) etEtternavn;
+
+        tvAdresseLabel = (TextView) fragment.findViewById(R.id.textView_adresseLabel);
+        tvAdresseLabel.setText("Adresse");
+        etAdresse = (EditText) fragment.findViewById(R.id.editText_adresse);
+        etAdresse.setText(currentKunde.getAdresse());
+        inputFields[2] = (EditText) etAdresse;
+
+        tvPostNrLabel = (TextView) fragment.findViewById(R.id.textView_postNrLabel);
+        tvPostNrLabel.setText("PostNr");
+        etPostNr = (EditText) fragment.findViewById(R.id.editText_postNr);
+        etPostNr.setText(currentKunde.getPostNr());
+        inputFields[3] = (EditText) etPostNr;
+
+        btnSubmit = (Button) fragment.findViewById(R.id.button_submit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateKunde();
+            }
+        });
+        return fragment;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    private void updateKunde() {
+
+    }
+
+    private void setCurrentKunde(String kundeString) {
+        Log.d("Update", kundeString);
+        try {
+            this.currentKunde = new Kunde(new JSONObject(kundeString));
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

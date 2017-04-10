@@ -80,6 +80,12 @@ public class HobbyhusetApi {
     // DELETES
     public void deleteVare(GetResponseCallback callback, int vareNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/ " + vareNr;
+        doExecuteDeleteCall(callback, restUrl);
+    }
+
+    public void deleteKunde(GetResponseCallback callback, int kundeNr) {
+        String restUrl = "http//itfag.usn.no/~141175/api.php/Kunde/ " + kundeNr;
+        doExecuteDeleteCall(callback, restUrl);
     }
 
     private void doExecuteGetCall(final GetResponseCallback callback, String restUrl) {

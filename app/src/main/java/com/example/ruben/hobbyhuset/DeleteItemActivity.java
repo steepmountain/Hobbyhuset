@@ -10,13 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class UpdateItemActivity extends AppCompatActivity implements UpdateKundeFragment.OnFragmentInteractionListener {
+public class DeleteItemActivity extends AppCompatActivity implements DeleteKundeFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_item);
-
+        setContentView(R.layout.activity_delete_item);
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null) {
@@ -28,7 +27,7 @@ public class UpdateItemActivity extends AppCompatActivity implements UpdateKunde
                 case MainActivity.KUNDE_CODE: {
                     Bundle bundle = new Bundle();
                     bundle.putInt("KundeNr", intent.getIntExtra("KundeNr", -1));
-                    Fragment fragment = new UpdateKundeFragment();
+                    Fragment fragment = new DeleteKundeFragment();
                     fragment.setArguments(bundle);
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
