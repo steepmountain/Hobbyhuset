@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -62,6 +63,12 @@ public class HobbyhusetApi {
     public void updateVare(GetResponseCallback callback, Vare v) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/" + v.getVareNr();
         JSONObject updateJSON = v.toJSON();
+        doExecuteUpdateCall(callback, restUrl, updateJSON);
+    }
+
+    public void updateKunde(GetResponseCallback callback, Kunde k) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde/" + k.getKundeNr();
+        JSONObject updateJSON = k.toJSON();
         doExecuteUpdateCall(callback, restUrl, updateJSON);
     }
 

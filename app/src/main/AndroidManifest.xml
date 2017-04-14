@@ -24,7 +24,7 @@
         <activity android:name=".ReadVareActivity" />
         <activity android:name=".CreateItemActivity" />
         <activity android:name=".UpdateItemActivity" />
-        <activity android:name=".DeleteItemActivity"></activity>
+        <activity android:name=".DeleteItemActivity" />
     </application>
 
 </manifest>

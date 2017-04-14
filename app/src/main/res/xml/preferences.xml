@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Cache">
+
+        <CheckBoxPreference
+            android:key="checkbox_preference"
+            android:summary="Huk av hvis du vil at appen skal huske at du har logget inn mellom sesjoner"
+            android:title="Husk meg" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

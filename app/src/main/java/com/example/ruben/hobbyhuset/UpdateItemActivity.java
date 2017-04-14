@@ -27,7 +27,7 @@ public class UpdateItemActivity extends AppCompatActivity implements UpdateKunde
 
                 case MainActivity.KUNDE_CODE: {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("KundeNr", intent.getIntExtra("KundeNr", -1));
+                    bundle.putParcelable("Kunde", intent.getParcelableExtra("Kunde"));
                     Fragment fragment = new UpdateKundeFragment();
                     fragment.setArguments(bundle);
                     FragmentManager fm = getSupportFragmentManager();

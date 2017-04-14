@@ -146,7 +146,7 @@ public class CreateKundeFragment extends Fragment {
         }
 
         // If input is correct, create Kunde object, check if online, and send Kunde-object
-        Kunde kunde = new Kunde(fornavn, etternavn, adresse, Integer.parseInt(postNr));
+        Kunde kunde = new Kunde(fornavn, etternavn, adresse, postNr);
 
         NetworkHelper helper = new NetworkHelper(mActivity);
         if (helper.isOnline()) {
@@ -161,6 +161,7 @@ public class CreateKundeFragment extends Fragment {
         else {
             Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private boolean checkInput(String fornavn, String etternavn, String adresse, String postNr) {
@@ -183,7 +184,7 @@ public class CreateKundeFragment extends Fragment {
             errors[2] = true;
         }
 
-        if (postNr.isEmpty() || postNr.length() != POSTNR_LENGTH || !isNumeric(postNr)) {
+        if (postNr.isEmpty() || postNr.length() != POSTNR_LENGTH) {
             errors[3] = true;
         }
 
@@ -195,16 +196,6 @@ public class CreateKundeFragment extends Fragment {
             }
         }
         return correctInput;
-    }
-
-    private static boolean isNumeric(String number) {
-        try {
-            int integer = Integer.parseInt(number);
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

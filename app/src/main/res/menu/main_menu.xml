@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity" >
-    <item android:id="@+id/action_kunde" android:title="Kunde"
+    <item android:id="@+id/action_kunde" android:title="K"
         android:orderInCategory="100" app:showAsAction="always" />
-    <item android:id="@+id/action_ordre" android:title="Ordre"
+    <item android:id="@+id/action_ordre" android:title="O"
         android:orderInCategory="110" app:showAsAction="always" />
-    <item android:id="@+id/action_vare" android:title="Vare"
+    <item android:id="@+id/action_vare" android:title="V"
         android:orderInCategory="120" app:showAsAction="always" />
+    <item android:id="@+id/action_settings" android:title="Settings"
+        android:orderInCategory="130"/>
 
 </menu>

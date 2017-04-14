@@ -16,12 +16,19 @@ import android.widget.Toast;
 
 
 public class MainActivity
-        extends AppCompatActivity implements KundeFragment.OnFragmentInteractionListener, OrdreFragment.OnFragmentInteractionListener, VareFragment.OnFragmentInteractionListener {
+        extends AppCompatActivity
+        implements KundeFragment.OnFragmentInteractionListener,
+        OrdreFragment.OnFragmentInteractionListener,
+        VareFragment.OnFragmentInteractionListener,
+        MyPreferenceFragment.OnFragmentInteractionListener {
 
     // Priority 1: Essential functionality
     // TODO: EditKundeActivity, EditOrdreActivity, EditVareActivity | VÆRE GENERELT FRAGMENT?
     // TODO: SlettItemActivity / SlettKundeActivity, LettOrdreActivity, SlettVareActivity | VÆRE GENERELT FRAGMENT?
     // TODO: NyItemActivity / NyKundeActivity, NyOrdreActivity, NyVareActivity
+
+    // TODO: ny kunde burde være knapp i main liste
+    // TODO: fix POST rest
 
     // Priority 2: Required additions
     // TODO: Activities and fragments need proper titles
@@ -51,8 +58,8 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         // checks if permissions are granted, no callback as the whole app fails if it doesn't have these permissions
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)!= PackageManager.PERMISSION_GRANTED)
-                && (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)!= PackageManager.PERMISSION_GRANTED)) {
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED)
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)) {
             // asks for permission
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_CODE_ACCESS_NETWORK_STATE);
@@ -93,6 +100,9 @@ public class MainActivity
             case R.id.action_vare:
                 fragment = new VareFragment();
                 break;
+            case R.id.action_settings:
+                fragment = new MyPreferenceFragment();
+                break;
         }
 
         if (fragment != null) {
@@ -100,8 +110,7 @@ public class MainActivity
             transaction = fm.beginTransaction();
             transaction.replace(R.id.contentFragment, fragment);
             transaction.commit();
-        }
-        else {
+        } else {
             Toast.makeText(this, "Failed to start fragment", Toast.LENGTH_SHORT).show();
         }
 

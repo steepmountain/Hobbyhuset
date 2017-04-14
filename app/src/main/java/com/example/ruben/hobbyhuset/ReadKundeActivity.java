@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,7 +16,8 @@ import java.util.ArrayList;
 public class ReadKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
 
     private final static String TITLE = "Kunde";
-    private int currentKunde;
+    private int currentKundeNr;
+    private Kunde currentKunde;
 
     Button btnNyKunde;
     Button btnEndreKunde;
@@ -61,11 +61,11 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
         if (intent != null && intent.getIntExtra("Source", -1) == MainActivity.KUNDE_CODE) {
 
             // Tries to make a kunde-object out of the incoming data
-            Kunde k = intent.getParcelableExtra("Kunde");
-            if (k != null) {
-                setKundeText(k);
-                getKundeOrdre(k);
-                currentKunde = k.getKundeNr();
+            currentKunde = intent.getParcelableExtra("Kunde");
+            if (currentKunde != null) {
+                setKundeText(currentKunde);
+                getKundeOrdre(currentKunde);
+                currentKundeNr = currentKunde.getKundeNr();
             }
             else {
                 error += "Fant ingen kunde.";
@@ -92,14 +92,14 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
     protected void endreKunde(View view) {
         Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
-        intent.putExtra("KundeNr", currentKunde);
+        intent.putExtra("Kunde", currentKunde);
         startActivity(intent);
     }
 
     protected void slettKunde(View view) {
         Intent intent = new Intent(this, DeleteItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
-        intent.putExtra("KundeNr", currentKunde);
+        intent.putExtra("KundeNr", currentKundeNr);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +37,6 @@ public class UpdateKundeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    // TODO: Sjekk om er større enn -1
-    private int currentKundeNr;
     private Kunde currentKunde;
 
     TextView tvTitle;
@@ -97,19 +96,7 @@ public class UpdateKundeFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment = inflater.inflate(R.layout.fragment_new_kunde, container, false);
 
-        currentKundeNr = getArguments().getInt("KundeNr");
-        Log.d("KundeNr", currentKundeNr + "");
-        NetworkHelper helper = new NetworkHelper(getContext());
-        if (helper.isOnline()) {
-            HobbyhusetApi api = new HobbyhusetApi();
-            api.getKunde(new GetResponseCallback() {
-                @Override
-                void onDataReceived(String item) {
-                    Log.d("dataReceived", item);
-                    setCurrentKunde(item);
-                }
-            }, currentKundeNr);
-        }
+        currentKunde = getArguments().getParcelable("Kunde");
 
         mActivity = getActivity();
         inputFields = new EditText[4];
@@ -139,7 +126,7 @@ public class UpdateKundeFragment extends Fragment {
         tvPostNrLabel = (TextView) fragment.findViewById(R.id.textView_postNrLabel);
         tvPostNrLabel.setText("PostNr");
         etPostNr = (EditText) fragment.findViewById(R.id.editText_postNr);
-        etPostNr.setText(currentKunde.getPostNr());
+        etPostNr.setText(currentKunde.getPostNr() + "");
         inputFields[3] = (EditText) etPostNr;
 
         btnSubmit = (Button) fragment.findViewById(R.id.button_submit);
@@ -160,11 +147,29 @@ public class UpdateKundeFragment extends Fragment {
     }
 
     private void updateKunde() {
-
+        NetworkHelper helper = new NetworkHelper(mActivity);
+        if (helper.isOnline()) {
+            Kunde updateKunde = new Kunde(
+                    currentKunde.getKundeNr(),
+                    etFornavn.getText().toString(),
+                    etEtternavn.getText().toString(),
+                    etAdresse.getText().toString(),
+                    etPostNr.getText().toString()
+            );
+            HobbyhusetApi api = new HobbyhusetApi();
+            api.updateKunde(new GetResponseCallback() {
+                @Override
+                void onDataReceived(String item) {
+                    // TODO: hva skjer på received?
+                }
+            }, updateKunde);
+        }
+        else {
+            Toast.makeText(mActivity, "Ingen nettverkstilgang!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setCurrentKunde(String kundeString) {
-        Log.d("Update", kundeString);
         try {
             this.currentKunde = new Kunde(new JSONObject(kundeString));
         } catch (JSONException e) {

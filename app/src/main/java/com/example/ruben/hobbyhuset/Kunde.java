@@ -22,7 +22,7 @@ public class Kunde extends Item implements Parcelable {
     String fornavn;
     String etternavn;
     String adresse; // TODO: Make Class "adresse"
-    int postNr; // TODO: make Class "Poststed" OR make String so it can read leading 0
+    String postNr; // TODO: make Class "Poststed" OR make String so it can read leading 0
 
     public int getKundeNr() {
         return kundeNr;
@@ -40,7 +40,7 @@ public class Kunde extends Item implements Parcelable {
         return adresse;
     }
 
-    public int getPostNr() {
+    public String getPostNr() {
         return postNr;
     }
 
@@ -51,7 +51,7 @@ public class Kunde extends Item implements Parcelable {
     static final String KOL_NAVN_ADRESSE = "Adresse";
     static final String KOL_NAVN_POSTNR = "PostNr";
 
-    public Kunde(int kundeNr, String fornavn, String etternavn, String adresse, int postNr) {
+    public Kunde(int kundeNr, String fornavn, String etternavn, String adresse, String postNr) {
         this.kundeNr = kundeNr;
         this.fornavn = fornavn;
         this.etternavn = etternavn;
@@ -59,7 +59,7 @@ public class Kunde extends Item implements Parcelable {
         this.postNr = postNr;
     }
 
-    public Kunde(String fornavn, String etternavn, String adresse, int postNr) {
+    public Kunde(String fornavn, String etternavn, String adresse, String postNr) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.adresse = adresse;
@@ -74,7 +74,7 @@ public class Kunde extends Item implements Parcelable {
         this.fornavn = jsonKunde.optString(KOL_NAVN_FORNAVN);
         this.etternavn = jsonKunde.optString(KOL_NAVN_ETTERNAVN);
         this.adresse = jsonKunde.optString(KOL_NAVN_ADRESSE);
-        this.postNr = jsonKunde.optInt(KOL_NAVN_POSTNR);
+        this.postNr = jsonKunde.optString(KOL_NAVN_POSTNR);
     }
 
     public static ArrayList<Kunde> lagKundeListe(String jsonString) throws JSONException, NullPointerException {
@@ -111,7 +111,7 @@ public class Kunde extends Item implements Parcelable {
         parcel.writeString(getFornavn());
         parcel.writeString(getEtternavn());
         parcel.writeString(getAdresse());
-        parcel.writeInt(getPostNr());
+        parcel.writeString(getPostNr());
     }
 
     // Constructor to create Kunde from parcel based on FIFO from writeToParcel
@@ -120,7 +120,7 @@ public class Kunde extends Item implements Parcelable {
         this.fornavn = in.readString();
         this.etternavn = in.readString();
         this.adresse = in.readString();
-        this.postNr = in.readInt();
+        this.postNr = in.readString();
     }
 
     public static final Parcelable.Creator<Kunde> CREATOR = new Parcelable.Creator<Kunde>() {
