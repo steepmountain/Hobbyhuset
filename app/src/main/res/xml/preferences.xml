@@ -1,4 +1,15 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="Personalia">
+        <EditTextPreference
+            android:key="navn"
+            android:title="Navn"
+            android:summary=""
+            android:defaultValue=""
+            android:inputType="textCapWords"
+            android:dialogMessage="Skriv inn navnet ditt"/>
+    </PreferenceCategory>
 
     <PreferenceCategory android:title="Cache">
 

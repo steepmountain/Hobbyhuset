@@ -61,7 +61,7 @@ public class OrdreAdapter extends BaseAdapter {
         }
 
         Ordre item = mOrdre.get(position);
-        vh.tvOrdreNr.setText("OrdreNr : " + item.getOrdreNr() + "");
+        vh.tvOrdreNr.setText(item.getOrdreNr() + "");
         vh.tvOrdreDato.setText("Ordredato : " + item.getOrdreDato());
         vh.tvSendtDato.setText("Sendtdato : " + item.getSendtDato());
         vh.tvBetaltDato.setText("Betaltdato : " + item.getBetaltDato());

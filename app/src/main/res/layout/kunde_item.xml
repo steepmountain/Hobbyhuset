@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/kundeItem_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kunde"
+        />
 
     <TextView
         android:id="@+id/kundeItemTextView_kundeNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_toRightOf="@id/kundeItem_icon"
         android:layout_alignParentTop="true"
         android:padding="5dp"
-        android:text="tittel"
+        android:text="KundeNr"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
@@ -21,18 +29,19 @@
         android:layout_alignParentStart="true"
         android:layout_below="@id/kundeItemTextView_kundeNr"
         android:padding="5dp"
-        android:text="pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Fornavn"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:id="@+id/kundeItemTextView_etternavn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/kundeItemTextView_fornavn"
         android:padding="5dp"
-        android:text="sjanger"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Etternavn"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:layout_alignBaseline="@+id/kundeItemTextView_fornavn"
+        android:layout_alignBottom="@+id/kundeItemTextView_fornavn"
+        android:layout_toEndOf="@+id/kundeItemTextView_fornavn" />
 
     <TextView
         android:id="@+id/kundeItemTextView_adresse"
@@ -40,16 +49,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/kundeItemTextView_etternavn"
         android:padding="5dp"
-        android:text="tid"
+        android:text="Adresse"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
         android:id="@+id/kundeItemTextView_postNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/kundeItemTextView_adresse"
         android:padding="5dp"
-        android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:text="PostNr"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_below="@+id/kundeItemTextView_fornavn"
+        android:layout_toEndOf="@+id/kundeItemTextView_adresse" />
 
 </RelativeLayout>
