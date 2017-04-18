@@ -157,7 +157,6 @@ public class RestClient {
                 out.close();
 
                 int status = connection.getResponseCode();
-                Log.d("JSON", updateUrl + "" + jsonItem);
                 if (status == HttpURLConnection.HTTP_OK) {
                     InputStream is = connection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -166,7 +165,6 @@ public class RestClient {
                         builder.append(response);
                     }
                     response = builder.toString();
-                    Log.d("Builder", builder.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -214,11 +212,9 @@ public class RestClient {
                 connection.connect();
 
                 JSONObject jsonItem = mItem.toJSON();
-                Log.d("RestClient", jsonItem.toString());
                 OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
                 out.write(jsonItem.toString());
                 out.close();
-                Log.d("JSONObject", jsonItem.toString());
 
                 int status = connection.getResponseCode();
 
@@ -230,7 +226,6 @@ public class RestClient {
                         builder.append(response);
                     }
                     response = builder.toString();
-                    Log.d("Response", builder.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

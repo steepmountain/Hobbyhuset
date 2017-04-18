@@ -70,7 +70,7 @@ public class ReadVareActivity extends AppCompatActivity {
         intent.putExtra("Source", MainActivity.VARE_CODE);
         startActivity(intent);
     }
-/*
+
     protected void endreVare(View view) {
         Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
@@ -83,7 +83,7 @@ public class ReadVareActivity extends AppCompatActivity {
         intent.putExtra("Source", MainActivity.VARE_CODE);
         intent.putExtra("VareNr", currentVare);
         startActivity(intent);
-    }*/
+    }
 
     private void setVareTekst(Vare v) {
         tvVNr.setText(v.getVareNr() + "");

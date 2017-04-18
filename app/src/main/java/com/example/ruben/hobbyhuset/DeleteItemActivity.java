@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class DeleteItemActivity extends AppCompatActivity implements DeleteKundeFragment.OnFragmentInteractionListener {
+public class DeleteItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +64,6 @@ public class DeleteItemActivity extends AppCompatActivity implements DeleteKunde
         } else {
             Toast.makeText(this, "Noe gikk galt med sendingen av data", Toast.LENGTH_LONG);
         }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class ReadOrdreActivity extends AppCompatActivity implements VareFragment.OnFragmentInteractionListener {
+public class ReadOrdreActivity extends AppCompatActivity {
 
     private final static String TITLE = "Ordre";
     private int currentOrdre;
@@ -76,7 +76,7 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         startActivity(intent);
     }
-/*
+
     protected void endreOrdre(View view) {
         Intent intent = new Intent(this, UpdateItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
@@ -89,7 +89,7 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
         intent.putExtra("Source", MainActivity.ORDRE_CODE);
         intent.putExtra("OrdreNr", currentOrdre);
         startActivity(intent);
-    }*/
+    }
 
     // Sets text for current Ordre
     private void setOrdreTekst(Ordre o) {
@@ -111,12 +111,6 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.varerForOrdreFragment, fragment);
         transaction.commit();
-    }
-
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

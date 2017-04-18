@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class ReadKundeActivity extends AppCompatActivity implements OrdreFragment.OnFragmentInteractionListener {
+public class ReadKundeActivity extends AppCompatActivity {
 
     private final static String TITLE = "Kunde";
     private int currentKundeNr;
@@ -119,11 +119,6 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.ordreForKundeFragment, fragment);
         transaction.commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

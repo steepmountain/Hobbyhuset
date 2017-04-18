@@ -11,9 +11,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class CreateItemActivity
-        extends AppCompatActivity
-        implements CreateKundeFragment.OnFragmentInteractionListener,
-        CreateOrdreFragment.OnFragmentInteractionListener {
+        extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +63,6 @@ public class CreateItemActivity
         }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

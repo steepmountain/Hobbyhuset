@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class UpdateItemActivity extends AppCompatActivity implements UpdateKundeFragment.OnFragmentInteractionListener {
+public class UpdateItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +66,6 @@ public class UpdateItemActivity extends AppCompatActivity implements UpdateKunde
         else {
             Toast.makeText(this, "Noe gikk galt med sendingen av data", Toast.LENGTH_LONG);
         }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

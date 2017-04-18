@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,11 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity
-        extends AppCompatActivity
-        implements KundeFragment.OnFragmentInteractionListener,
-        OrdreFragment.OnFragmentInteractionListener,
-        VareFragment.OnFragmentInteractionListener,
-        MyPreferenceFragment.OnFragmentInteractionListener {
+        extends AppCompatActivity {
 
     // TODO: ny kunde burde være knapp i main liste
 
@@ -34,7 +29,6 @@ public class MainActivity
     // TODO: Activities and fragments need proper titles
     // TODO: All fields needs a name, format= "FieldName: FieldValue";
     // TODO: Preference manager to remember login
-    // TODO: Navigation drawer to select fragments
 
     // Priority 3: Has to wait until functionality is there
     // TODO: Polish GUI
@@ -165,11 +159,6 @@ public class MainActivity
         } else {
             Toast.makeText(this, "Failed to start fragment", Toast.LENGTH_SHORT).show();
         }
-
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
     }
 
