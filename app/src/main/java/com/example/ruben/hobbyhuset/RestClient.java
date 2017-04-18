@@ -218,6 +218,7 @@ public class RestClient {
                 OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
                 out.write(jsonItem.toString());
                 out.close();
+                Log.d("JSONObject", jsonItem.toString());
 
                 int status = connection.getResponseCode();
 

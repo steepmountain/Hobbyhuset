@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -13,36 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateKundeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateKundeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CreateKundeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    TextView tvTitle;
-    TextView tvFornavnLabel;
-    TextView etFornavn;
-    TextView tvEtternavnLabel;
+    TextInputLayout tvFornavnLabel;
+    EditText etFornavn;
+    TextInputLayout tvEtternavnLabel;
     EditText etEtternavn;
-    TextView tvAdresseLabel;
+    TextInputLayout tvAdresseLabel;
     EditText etAdresse;
-    TextView tvPostNrLabel;
+    TextInputLayout tvPostNrLabel;
     EditText etPostNr;
     Button btnSubmit;
     private Activity mActivity;
@@ -50,39 +33,10 @@ public class CreateKundeFragment extends Fragment {
     private static int VARCHAR_MAX = 256;
     private static int POSTNR_LENGTH = 4;
 
-    EditText[] inputFields;
-
     private OnFragmentInteractionListener mListener;
 
     public CreateKundeFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateKundeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CreateKundeFragment newInstance(String param1, String param2) {
-        CreateKundeFragment fragment = new CreateKundeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -91,34 +45,21 @@ public class CreateKundeFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment = inflater.inflate(R.layout.fragment_new_kunde, container, false);
         mActivity = getActivity();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ny kunde");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Ny kunde");
 
-        inputFields = new EditText[4];
 
         // Inits label and edittext for fornavn
-        tvFornavnLabel = (TextView) fragment.findViewById(R.id.textView_fornavnLabel);
-        tvFornavnLabel.setText("Fornavn");
+        tvFornavnLabel = (TextInputLayout) fragment.findViewById(R.id.textView_fornavnLabel);
         etFornavn = (EditText) fragment.findViewById(R.id.editText_fornavn);
-        etFornavn.setHint("Fornavn");
-        inputFields[0] = (EditText) etFornavn;
 
-        tvEtternavnLabel = (TextView) fragment.findViewById(R.id.textView_etternavnLabel);
-        tvEtternavnLabel.setText("Etternavn");
+        tvEtternavnLabel = (TextInputLayout) fragment.findViewById(R.id.textView_etternavnLabel);
         etEtternavn = (EditText) fragment.findViewById(R.id.editText_etternavn);
-        etEtternavn.setHint("Etternavn");
-        inputFields[1] = (EditText) etEtternavn;
 
-        tvAdresseLabel = (TextView) fragment.findViewById(R.id.textView_adresseLabel);
-        tvAdresseLabel.setText("Adresse");
+        tvAdresseLabel = (TextInputLayout) fragment.findViewById(R.id.textView_adresseLabel);
         etAdresse = (EditText) fragment.findViewById(R.id.editText_adresse);
-        etAdresse.setHint("Adresse");
-        inputFields[2] = (EditText) etAdresse;
 
-        tvPostNrLabel = (TextView) fragment.findViewById(R.id.textView_postNrLabel);
-        tvPostNrLabel.setText("PostNr");
+        tvPostNrLabel = (TextInputLayout) fragment.findViewById(R.id.textView_postNrLabel);
         etPostNr = (EditText) fragment.findViewById(R.id.editText_postNr);
-        etPostNr.setHint("PostNr");
-        inputFields[3] = (EditText) etPostNr;
 
         btnSubmit = (Button) fragment.findViewById(R.id.button_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -131,15 +72,10 @@ public class CreateKundeFragment extends Fragment {
     }
 
     protected void createNewKunde() {
-        // resets colors
-        for (EditText field : inputFields) {
-            field.setBackgroundResource(R.drawable.edit_text_box);
-        }
-
-        String fornavn = etFornavn.getText().toString();
-        String etternavn = etEtternavn.getText().toString();
-        String adresse = etAdresse.getText().toString();
-        String postNr = etPostNr.getText().toString();
+        String fornavn = etFornavn.getText().toString().trim();
+        String etternavn = etEtternavn.getText().toString().trim();
+        String adresse = etAdresse.getText().toString().trim();
+        String postNr = etPostNr.getText().toString().trim();
 
         if (!checkInput(fornavn, etternavn, adresse, postNr)) {
             return;
@@ -157,8 +93,7 @@ public class CreateKundeFragment extends Fragment {
                     getActivity().finish();
                 }
             }, kunde);
-        }
-        else {
+        } else {
             Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
         }
 
@@ -166,60 +101,41 @@ public class CreateKundeFragment extends Fragment {
 
     private boolean checkInput(String fornavn, String etternavn, String adresse, String postNr) {
 
-        // TODO: sjekk VARCAHR lengde i DB
-        // TODO: make class for checking inputs
-        boolean[] errors = new boolean[]{false, false, false, false};
-        boolean correctInput = true;
-
         // Simple checks for input. Could be made more robust before being sent to DB
         if (fornavn.isEmpty() || fornavn.length() > VARCHAR_MAX) {
-            errors[0] = true;
+            etFornavn.setError("Feil.");
+            etFornavn.requestFocus();
+            return false;
+
+        } else {
+            tvFornavnLabel.setErrorEnabled(false);
         }
 
         if (etternavn.isEmpty() || etternavn.length() > VARCHAR_MAX) {
-            errors[1] = true;
+            etEtternavn.setError("Feil");
+            etEtternavn.requestFocus();
+            return false;
+        } else {
+            tvEtternavnLabel.setErrorEnabled(false);
         }
 
         if (adresse.isEmpty() || etternavn.length() > VARCHAR_MAX) {
-            errors[2] = true;
+            etAdresse.setError("Feil.");
+            etAdresse.requestFocus();
+            return false;
+        } else {
+            tvAdresseLabel.setErrorEnabled(false);
         }
 
         if (postNr.isEmpty() || postNr.length() != POSTNR_LENGTH) {
-            errors[3] = true;
-        }
-
-        // Checks if any input field has errors and highlights
-        for (int i = 0; i < inputFields.length; i++) {
-            if (errors[i]) {
-                inputFields[i].setBackgroundResource(R.drawable.edit_text_box_error);
-                correctInput = false;
-            }
-        }
-        return correctInput;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+            etPostNr.setError("Feil.");
+            etPostNr.requestFocus();
+            return false;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            tvPostNrLabel.setErrorEnabled(false);
         }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+        return true;
     }
 
     /**

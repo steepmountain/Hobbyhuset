@@ -2,81 +2,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ruben.hobbyhuset.CreateKundeFragment">
+    tools:context="com.example.ruben.hobbyhuset.CreateVareFragment">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/textView_fornavnLabel"
+        android:id="@+id/textView_vareNr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText_fornavn"
+            android:id="@+id/editText_vareNr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView_fornavnLabel"
-            android:hint="Fornavn"
+            android:layout_below="@id/textView_vareNr"
+            android:hint="Varenummer"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textView_betegnelse"
+        android:layout_below="@id/textView_vareNr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editText_betegnelse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_betegnelse"
+            android:hint="Betegnelse"
             android:inputType="textCapWords" />
 
     </android.support.design.widget.TextInputLayout>
 
-
     <android.support.design.widget.TextInputLayout
-
-        android:id="@+id/textView_etternavnLabel"
+        android:id="@+id/textView_pris"
+        android:layout_below="@id/textView_betegnelse"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_fornavnLabel">
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText_etternavn"
+            android:id="@+id/editText_pris"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView_etternavnLabel"
-            android:hint="Etternavn"
-            android:inputType="textCapWords" />
+            android:layout_below="@id/textView_pris"
+            android:hint="Pris"
+            android:inputType="numberDecimal" />
 
     </android.support.design.widget.TextInputLayout>
 
-
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/textView_adresseLabel"
+        android:id="@+id/textView_antall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_etternavnLabel">
+        android:layout_below="@id/textView_pris"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText_adresse"
+            android:id="@+id/editText_antall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView_adresseLabel"
-            android:hint="Adresse"
-            android:inputType="textCapWords" />
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textView_postNrLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_adresseLabel">
-
-        <EditText
-            android:id="@+id/editText_postNr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_postNrLabel"
-            android:hint="PostNr"
+            android:layout_below="@id/textView_pris"
+            android:hint="Antall"
             android:inputType="number" />
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/button_submit"
+        android:layout_below="@id/textView_antall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_postNrLabel"
-        android:maxLength="4"
-        android:text="Send" />
+        android:text="Lag ny vare"/>
+
 
 </RelativeLayout>

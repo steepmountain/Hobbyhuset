@@ -58,6 +58,8 @@ public class Vare extends Item implements Parcelable{
     static final String KOL_NAVN_ANTALL = "Antall";
     static final String KOL_NAVN_HYLLE = "Hylle";
 
+    static final int DEFAULT_CATEGORY = 1;
+
     public Vare() {
         // Empty constructor
     }
@@ -79,6 +81,15 @@ public class Vare extends Item implements Parcelable{
         this.katNr = jsonVare.optInt(KOL_NAVN_KATNR);
         this.antall = jsonVare.optInt(KOL_NAVN_ANTALL);
         this.hylle = jsonVare.optString(KOL_NAVN_HYLLE);
+    }
+
+    public Vare(String vareNr, String betegnelse, double pris, int antall) {
+        this.vareNr = vareNr;
+        this.betegnelse = betegnelse;
+        this.pris = pris;
+        this.antall = antall;
+
+        this.katNr = DEFAULT_CATEGORY;
     }
 
     // Metode som lager en ArrayList med Vare-objekter basert på en streng med JSONdata

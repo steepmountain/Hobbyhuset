@@ -3,6 +3,7 @@ package com.example.ruben.hobbyhuset;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class CreateOrdreFragment extends Fragment {
     EditText[] inputFields;
     TextView tvOrdreDato;
     DatePicker dpOrdreDato;
-    TextView tvKundeNr;
+    TextInputLayout tvKundeNr;
     EditText etKundeNr;
     Button btnSubmit;
 
@@ -90,18 +91,13 @@ public class CreateOrdreFragment extends Fragment {
         mActivity = getActivity();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ny ordre");
 
-        inputFields = new EditText[1];
-
         tvOrdreDato = (TextView) fragment.findViewById(R.id.textView_ordreDato);
         tvOrdreDato.setText("Ordredato");
 
         dpOrdreDato = (DatePicker) fragment.findViewById(R.id.datePicker_ordreDato);
-        tvKundeNr = (TextView) fragment.findViewById(R.id.textView_kundeNr);
-        tvKundeNr.setText("Kundenummer");
+        tvKundeNr = (TextInputLayout) fragment.findViewById(R.id.textView_kundeNr);
 
         etKundeNr = (EditText) fragment.findViewById(R.id.editText_kundeNr);
-        etKundeNr.setHint("Eksisterende kundenummer");
-        inputFields[0] = etKundeNr;
 
         btnSubmit = (Button) fragment.findViewById(R.id.button_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -111,19 +107,14 @@ public class CreateOrdreFragment extends Fragment {
             }
         });
 
-
         return fragment;
     }
 
     private void createNewOrdre() {
-        // resets colors
-        for (EditText field : inputFields) {
-            field.setBackgroundResource(R.drawable.edit_text_box);
-        }
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String ordreDato = df.format(new Date());
-        String kundeNr = etKundeNr.getText().toString();
+        String kundeNr = etKundeNr.getText().toString().trim();
 
         if (!checkInput(kundeNr)) {
             return;
@@ -147,21 +138,14 @@ public class CreateOrdreFragment extends Fragment {
 
     private boolean checkInput(String kundeNr) {
 
-        boolean[] errors = new boolean[]{false, false};
-        boolean correctInput = true;
-
+        // Checks kundeNr, assumes date is correct
         if (kundeNr.isEmpty() || kundeNr.length() != KUNDENR_LENGTH || !isNumeric(kundeNr)) {
-            errors[0] = true;
+            etKundeNr.setError("Feil");
+            etKundeNr.requestFocus();
+            return false;
         }
 
-        // Checks if any input field has errors and highlights
-        for (int i = 0; i < inputFields.length; i++) {
-            if (errors[i]) {
-                inputFields[i].setBackgroundResource(R.drawable.edit_text_box_error);
-                correctInput = false;
-            }
-        }
-        return correctInput;
+        return true;
     }
 
     private boolean isNumeric(String str)

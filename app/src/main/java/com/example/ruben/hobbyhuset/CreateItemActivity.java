@@ -46,15 +46,15 @@ public class CreateItemActivity
                     transaction.commit();
                     break;
                 }
-/*
+
                 case MainActivity.VARE_CODE: {
-                    Fragment fragment = new NewVareFragment();
+                    Fragment fragment = new CreateVareFragment();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
                     transaction.replace(R.id.contentFragment, fragment);
                     transaction.commit();
                     break;
-                }*/
+                }
 
                 default: {
                     Toast.makeText(this, "Invalid origin.", Toast.LENGTH_LONG);
