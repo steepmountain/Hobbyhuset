@@ -7,17 +7,18 @@
     tools:context="com.example.ruben.hobbyhuset.ReadKundeActivity">
 
     <LinearLayout
+        android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_nyKunde"
-            android:onClick="nyKunde"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="nyKunde" />
+            android:onClick="nyKunde"
+            android:text="Ny kunde" />
 
         <Button
             android:id="@+id/button_endreKunde"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="endreKunde"
-            android:text="endreKunde" />
+            android:text="Endre kunde" />
 
         <Button
             android:id="@+id/button_slettKunde"
@@ -33,49 +34,50 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="slettKunde"
-            android:text="slettKunde" />
+            android:text="Slett kunde" />
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView_kundeNr"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView_tittel"/>
+        android:layout_below="@id/layout_buttons"
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
-        android:layout_below="@id/textView_tittel"
-        android:layout_width="match_parent"
+        android:id="@+id/textView_navn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView_navn"/>
+        android:layout_below="@id/layout_buttons"
+        android:layout_toRightOf="@id/textView_kundeNr"
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
+        android:id="@+id/textView_adresse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView_navn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_kundeNr"/>
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
+        android:id="@+id/textView_postNr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView_kundeNr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_adresse"/>
+        android:layout_toRightOf="@id/textView_adresse"
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView_adresse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_postNr"/>
-
-    <TextView
-        android:layout_below="@id/textView_postNr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_postSted"/>
-
-    <TextView
-        android:layout_below="@id/textView_postSted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_error"/>
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <FrameLayout
         android:id="@+id/ordreForKundeFragment"
@@ -83,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_error"
         android:layout_weight="1" />
-
 
 
 </RelativeLayout>

@@ -1,66 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/vareItem_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:src="@drawable/vare" />
 
     <TextView
         android:id="@+id/vareTextView_vareNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/vareItem_icon"
         android:padding="5dp"
         android:text="VareNr"
         android:textAllCaps="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/vareTextView_betegnelse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vareTextView_vareNr"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/vareTextView_vareNr"
         android:padding="5dp"
-        android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:text="Betegnelse"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/vareTextView_pris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@id/vareTextView_betegnelse"
+        android:layout_toRightOf="@id/vareItem_icon"
         android:padding="5dp"
-        android:text="pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Pris"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
         android:id="@+id/vareTextView_katNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/vareTextView_pris"
+        android:layout_below="@id/vareTextView_vareNr"
+        android:layout_toRightOf="@id/vareTextView_pris"
         android:padding="5dp"
-        android:text="sjanger"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
+        android:text="KategoriNr"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
 
     <TextView
         android:id="@+id/vareTextView_antall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vareTextView_katNr"
+        android:layout_below="@id/vareTextView_pris"
+        android:layout_toRightOf="@id/vareItem_icon"
         android:padding="5dp"
-        android:text="tid"
+        android:text="Antall"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
         android:id="@+id/vareTextView_hylle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vareTextView_antall"
+        android:layout_below="@id/vareTextView_katNr"
+        android:layout_toRightOf="@id/vareTextView_antall"
         android:padding="5dp"
-        android:text="tid"
+        android:text="Hylle"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class DeleteItemActivity extends AppCompatActivity implements DeleteKundeFragment.OnFragmentInteractionListener {
@@ -16,6 +17,8 @@ public class DeleteItemActivity extends AppCompatActivity implements DeleteKunde
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_item);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null) {
@@ -54,12 +57,11 @@ public class DeleteItemActivity extends AppCompatActivity implements DeleteKunde
                     break;
                 }*/
 
-                default : {
+                default: {
                     Toast.makeText(this, "Invalid origin.", Toast.LENGTH_LONG);
                 }
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "Noe gikk galt med sendingen av data", Toast.LENGTH_LONG);
         }
     }
@@ -67,5 +69,16 @@ public class DeleteItemActivity extends AppCompatActivity implements DeleteKunde
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                this.finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

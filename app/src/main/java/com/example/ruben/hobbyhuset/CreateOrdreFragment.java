@@ -1,31 +1,34 @@
 package com.example.ruben.hobbyhuset;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CreateKundeFragment.OnFragmentInteractionListener} interface
+ * {@link CreateOrdreFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CreateKundeFragment#newInstance} factory method to
+ * Use the {@link CreateOrdreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateKundeFragment extends Fragment {
+public class CreateOrdreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,26 +38,20 @@ public class CreateKundeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView tvTitle;
-    TextView tvFornavnLabel;
-    TextView etFornavn;
-    TextView tvEtternavnLabel;
-    EditText etEtternavn;
-    TextView tvAdresseLabel;
-    EditText etAdresse;
-    TextView tvPostNrLabel;
-    EditText etPostNr;
-    Button btnSubmit;
-    private Activity mActivity;
-
-    private static int VARCHAR_MAX = 256;
-    private static int POSTNR_LENGTH = 4;
-
-    EditText[] inputFields;
-
     private OnFragmentInteractionListener mListener;
 
-    public CreateKundeFragment() {
+    private Context mActivity;
+    EditText[] inputFields;
+    TextView tvOrdreDato;
+    DatePicker dpOrdreDato;
+    TextView tvKundeNr;
+    EditText etKundeNr;
+    Button btnSubmit;
+
+    private static int VARCHAR_MAX = 256;
+    private static int KUNDENR_LENGTH = 4;
+
+    public CreateOrdreFragment() {
         // Required empty public constructor
     }
 
@@ -64,11 +61,11 @@ public class CreateKundeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateKundeFragment.
+     * @return A new instance of fragment CreateOrdreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CreateKundeFragment newInstance(String param1, String param2) {
-        CreateKundeFragment fragment = new CreateKundeFragment();
+    public static CreateOrdreFragment newInstance(String param1, String param2) {
+        CreateOrdreFragment fragment = new CreateOrdreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,103 +86,72 @@ public class CreateKundeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragment = inflater.inflate(R.layout.fragment_new_kunde, container, false);
+        View fragment = inflater.inflate(R.layout.fragment_create_ordre, container, false);
         mActivity = getActivity();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ny kunde");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ny ordre");
 
-        inputFields = new EditText[4];
+        inputFields = new EditText[1];
 
-        // Inits label and edittext for fornavn
-        tvFornavnLabel = (TextView) fragment.findViewById(R.id.textView_fornavnLabel);
-        tvFornavnLabel.setText("Fornavn");
-        etFornavn = (EditText) fragment.findViewById(R.id.editText_fornavn);
-        etFornavn.setHint("Fornavn");
-        inputFields[0] = (EditText) etFornavn;
+        tvOrdreDato = (TextView) fragment.findViewById(R.id.textView_ordreDato);
+        tvOrdreDato.setText("Ordredato");
 
-        tvEtternavnLabel = (TextView) fragment.findViewById(R.id.textView_etternavnLabel);
-        tvEtternavnLabel.setText("Etternavn");
-        etEtternavn = (EditText) fragment.findViewById(R.id.editText_etternavn);
-        etEtternavn.setHint("Etternavn");
-        inputFields[1] = (EditText) etEtternavn;
+        dpOrdreDato = (DatePicker) fragment.findViewById(R.id.datePicker_ordreDato);
+        tvKundeNr = (TextView) fragment.findViewById(R.id.textView_kundeNr);
+        tvKundeNr.setText("Kundenummer");
 
-        tvAdresseLabel = (TextView) fragment.findViewById(R.id.textView_adresseLabel);
-        tvAdresseLabel.setText("Adresse");
-        etAdresse = (EditText) fragment.findViewById(R.id.editText_adresse);
-        etAdresse.setHint("Adresse");
-        inputFields[2] = (EditText) etAdresse;
-
-        tvPostNrLabel = (TextView) fragment.findViewById(R.id.textView_postNrLabel);
-        tvPostNrLabel.setText("PostNr");
-        etPostNr = (EditText) fragment.findViewById(R.id.editText_postNr);
-        etPostNr.setHint("PostNr");
-        inputFields[3] = (EditText) etPostNr;
+        etKundeNr = (EditText) fragment.findViewById(R.id.editText_kundeNr);
+        etKundeNr.setHint("Eksisterende kundenummer");
+        inputFields[0] = etKundeNr;
 
         btnSubmit = (Button) fragment.findViewById(R.id.button_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createNewKunde();
+                createNewOrdre();
             }
         });
+
+
         return fragment;
     }
 
-    protected void createNewKunde() {
+    private void createNewOrdre() {
         // resets colors
         for (EditText field : inputFields) {
             field.setBackgroundResource(R.drawable.edit_text_box);
         }
 
-        String fornavn = etFornavn.getText().toString();
-        String etternavn = etEtternavn.getText().toString();
-        String adresse = etAdresse.getText().toString();
-        String postNr = etPostNr.getText().toString();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String ordreDato = df.format(new Date());
+        String kundeNr = etKundeNr.getText().toString();
 
-        if (!checkInput(fornavn, etternavn, adresse, postNr)) {
+        if (!checkInput(kundeNr)) {
             return;
         }
 
-        // If input is correct, create Kunde object, check if online, and send Kunde-object
-        Kunde kunde = new Kunde(fornavn, etternavn, adresse, postNr);
-
+        Ordre ordre = new Ordre(ordreDato, Integer.parseInt(kundeNr));
         NetworkHelper helper = new NetworkHelper(mActivity);
         if (helper.isOnline()) {
             HobbyhusetApi api = new HobbyhusetApi();
-            api.insertKunde(new GetResponseCallback() {
+            api.insertOrdre(new GetResponseCallback() {
                 @Override
                 void onDataReceived(String item) {
                     getActivity().finish();
                 }
-            }, kunde);
+            }, ordre);
         }
         else {
             Toast.makeText(getActivity(), "Ingen nettverkstilgang!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
-    private boolean checkInput(String fornavn, String etternavn, String adresse, String postNr) {
+    private boolean checkInput(String kundeNr) {
 
-        // TODO: sjekk VARCAHR lengde i DB
-        // TODO: make class for checking inputs
-        boolean[] errors = new boolean[]{false, false, false, false};
+        boolean[] errors = new boolean[]{false, false};
         boolean correctInput = true;
 
-        // Simple checks for input. Could be made more robust before being sent to DB
-        if (fornavn.isEmpty() || fornavn.length() > VARCHAR_MAX) {
+        if (kundeNr.isEmpty() || kundeNr.length() != KUNDENR_LENGTH || !isNumeric(kundeNr)) {
             errors[0] = true;
-        }
-
-        if (etternavn.isEmpty() || etternavn.length() > VARCHAR_MAX) {
-            errors[1] = true;
-        }
-
-        if (adresse.isEmpty() || etternavn.length() > VARCHAR_MAX) {
-            errors[2] = true;
-        }
-
-        if (postNr.isEmpty() || postNr.length() != POSTNR_LENGTH) {
-            errors[3] = true;
         }
 
         // Checks if any input field has errors and highlights
@@ -196,6 +162,19 @@ public class CreateKundeFragment extends Fragment {
             }
         }
         return correctInput;
+    }
+
+    private boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

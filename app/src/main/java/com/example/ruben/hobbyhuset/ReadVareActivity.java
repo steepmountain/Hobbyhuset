@@ -3,6 +3,7 @@ package com.example.ruben.hobbyhuset;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +12,6 @@ public class ReadVareActivity extends AppCompatActivity {
     private final static String TITLE = "Vare";
     private String currentVare;
 
-    TextView tvTittel;
     TextView tvVNr;
     TextView tvBetegnelse;
     TextView tvPris;
@@ -24,9 +24,10 @@ public class ReadVareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_vare);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // Prepares XML
-        tvTittel = (TextView) findViewById(R.id.textView_tittel);
         tvVNr = (TextView) findViewById(R.id.textView_VNr);
         tvBetegnelse = (TextView) findViewById(R.id.textView_betegnelse);
         tvPris = (TextView) findViewById(R.id.textView_pris);
@@ -85,14 +86,25 @@ public class ReadVareActivity extends AppCompatActivity {
     }*/
 
     private void setVareTekst(Vare v) {
-        tvTittel.setText("Vare");
         tvVNr.setText(v.getVareNr() + "");
         tvBetegnelse.setText(v.getBetegnelse());
-        tvPris.setText(v.getPris() + "");
-        tvKatNr.setText(v.getKatNr() + "");
-        tvAntall.setText(v.getAntall() + "");
-        tvHylle.setText(v.getHylle());
+        tvPris.setText("Pris: " + v.getPris() + "kr");
+        tvKatNr.setText("Kategorinr: " + v.getKatNr());
+        tvAntall.setText("Antall: " + v.getAntall());
+        tvHylle.setText("Hylle: " + v.getHylle());
+        getSupportActionBar().setTitle(v.getVareNr() + "");
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                this.finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

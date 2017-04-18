@@ -76,6 +76,11 @@ public class Ordre extends Item implements Parcelable{
         this.kundeNr = jsonOrdre.optInt(KOL_NAVN_KNR);
     }
 
+    public Ordre(String ordreDato, int kundeNr) {
+        this.ordreDato = ordreDato;
+        this.kundeNr = kundeNr;
+    }
+
     public static ArrayList<Ordre> lagOrdreListe(String jsonString) throws JSONException, NullPointerException, ParseException {
         ArrayList<Ordre> ordreListe = new ArrayList<Ordre>();
         JSONObject jsonData = new JSONObject(jsonString);
@@ -87,6 +92,7 @@ public class Ordre extends Item implements Parcelable{
         }
         return ordreListe;
     }
+
 
     public static ArrayList<Integer> lagVareNrListe(String jsonString) throws JSONException {
         ArrayList<Integer> nyKundeNrListe = new ArrayList<>();

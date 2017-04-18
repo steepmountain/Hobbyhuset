@@ -1,0 +1,55 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        tools:context="com.example.ruben.hobbyhuset.CreateOrdreFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textView_ordreDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="5dp" />
+
+        <DatePicker
+            android:id="@+id/datePicker_ordreDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_ordreDato"
+            android:background="@drawable/edit_text_box"
+            android:inputType="date"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/textView_kundeNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datePicker_ordreDato"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/editText_kundeNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_kundeNr"
+            android:background="@drawable/edit_text_box"
+            android:inputType="number"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editText_kundeNr"
+            android:padding="5dp"
+            android:text="Ny ordre" />
+
+    </RelativeLayout>
+</ScrollView>

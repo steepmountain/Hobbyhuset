@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +18,6 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
     private final static String TITLE = "Ordre";
     private int currentOrdre;
 
-    TextView tvTittel;
     TextView tvOrdreNr;
     TextView tvOrdreDato;
     TextView tvSendtDato;
@@ -25,17 +25,15 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
     TextView tvKundeNr;
     TextView tvError;
 
-    ListView lvVarerForOrdre;
-    ArrayList<Vare> mVareArray;
-    VareAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_ordre);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // Prepares XML
-        tvTittel = (TextView) findViewById(R.id.textView_tittel);
         tvOrdreNr = (TextView) findViewById(R.id.textView_ordreNr);
         tvOrdreDato = (TextView) findViewById(R.id.textView_ordreDato);
         tvSendtDato = (TextView) findViewById(R.id.textView_sendtDato);
@@ -95,12 +93,12 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
 
     // Sets text for current Ordre
     private void setOrdreTekst(Ordre o) {
-
-        tvOrdreNr.setText("OrdreNr : " + o.getOrdreNr() + "");
+        tvOrdreNr.setText(o.getOrdreNr() + "");
         tvOrdreDato.setText("Ordredato : " + o.getOrdreDato());
         tvSendtDato.setText("Sendtdato : " + o.getSendtDato());
         tvBetaltDato.setText("Betaltdato : " + o.getBetaltDato());
         tvKundeNr.setText("KundeNr : " + o.getKundeNr() + "");
+        getSupportActionBar().setTitle(o.getOrdreNr() + "");
     }
 
     // Gets every Vare in current Ordre
@@ -119,5 +117,16 @@ public class ReadOrdreActivity extends AppCompatActivity implements VareFragment
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                this.finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

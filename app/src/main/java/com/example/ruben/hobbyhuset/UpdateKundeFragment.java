@@ -101,9 +101,6 @@ public class UpdateKundeFragment extends Fragment {
         mActivity = getActivity();
         inputFields = new EditText[4];
 
-        // Title for newKunde
-        tvTitle = (TextView) mActivity.findViewById(R.id.textView_tittel);
-
         // Inits label and edittext for fornavn
         tvFornavnLabel = (TextView) fragment.findViewById(R.id.textView_fornavnLabel);
         tvFornavnLabel.setText("Fornavn");

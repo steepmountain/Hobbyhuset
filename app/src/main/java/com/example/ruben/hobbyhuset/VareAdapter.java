@@ -61,9 +61,9 @@ public class VareAdapter extends BaseAdapter {
         }
 
         Vare item = mVare.get(position);
-        vh.tvVareNr.setText("VareNr : " + item.getVareNr() + "");
-        vh.tvBetegnelse.setText("Betegnelse : " + item.getBetegnelse());
-        vh.tvPris.setText("Pris : " + item.getPris() + "");
+        vh.tvVareNr.setText(item.getVareNr() + "");
+        vh.tvBetegnelse.setText(item.getBetegnelse());
+        vh.tvPris.setText("Pris : " + item.getPris() + "kr");
         vh.tvKatNr.setText("KategoriNr : " + item.getKatNr() + ""); // TODO: integrer med klassen Kategori
         vh.tvAntall.setText("Antall : " +item.getAntall() + "");
         vh.tvHylle.setText("Hylle : " + item.getHylle());

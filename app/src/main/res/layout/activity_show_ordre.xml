@@ -7,8 +7,9 @@
     tools:context="com.example.ruben.hobbyhuset.ReadKundeActivity">
 
     <LinearLayout
+        android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -17,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="slettOrdre" />
+            android:text="Ny ordre" />
 
         <Button
             android:id="@+id/button_endreOrdre"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="endreOrdre"
-            android:text="slettOrdre" />
+            android:text="Endre ordre" />
 
         <Button
             android:id="@+id/button_slettOrdre"
@@ -33,19 +34,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="slettOrdre"
-            android:text="slettOrdre" />
+            android:text="Slett ordre" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_tittel"/>
 
     <TextView
         android:id="@+id/textView_ordreNr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_tittel"
+        android:layout_below="@id/layout_buttons"
         android:padding="5dp"
         android:text="tittel"
         android:textAllCaps="true"
@@ -58,7 +54,7 @@
         android:layout_below="@id/textView_ordreNr"
         android:padding="5dp"
         android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/textView_sendtDato"
@@ -88,6 +84,14 @@
         android:layout_below="@id/textView_betaltDato"
         android:padding="5dp"
         android:text="tid"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_kundeNr"
+        android:padding="5dp"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <FrameLayout
@@ -95,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_below="@+id/textView_kundeNr" />
+        android:layout_below="@+id/textView_error" />
 
 
 

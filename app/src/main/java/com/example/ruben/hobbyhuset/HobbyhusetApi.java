@@ -84,6 +84,11 @@ public class HobbyhusetApi {
         doExecuteInsertCall(callback, restUrl, k);
     }
 
+    public void insertOrdre(GetResponseCallback callback, Ordre o) {
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre/";
+        doExecuteInsertCall(callback, restUrl, o);
+    }
+
     // DELETES
     public void deleteVare(GetResponseCallback callback, int vareNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/ " + vareNr;

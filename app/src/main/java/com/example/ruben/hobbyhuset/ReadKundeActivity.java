@@ -24,12 +24,10 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
     Button btnNyKunde;
     Button btnEndreKunde;
     Button btnSlettKunde;
-    TextView tvTittel;
     TextView tvNavn;
     TextView tvKundeNr;
     TextView tvAdresse;
     TextView tvPostNr;
-    TextView tvPostSted;
     TextView tvError;
 
     ListView lvOrdreForKunde;
@@ -41,18 +39,17 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_kunde);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // Prepares XML
         btnNyKunde = (Button) findViewById(R.id.button_nyKunde);
         btnEndreKunde = (Button) findViewById(R.id.button_endreKunde);
         btnSlettKunde = (Button) findViewById(R.id.button_slettKunde);
-
-        tvTittel = (TextView) findViewById(R.id.textView_tittel);
         tvNavn = (TextView) findViewById(R.id.textView_navn);
         tvKundeNr = (TextView) findViewById(R.id.textView_kundeNr);
         tvAdresse = (TextView) findViewById(R.id.textView_adresse);
         tvPostNr = (TextView) findViewById(R.id.textView_postNr);
-        tvPostSted = (TextView) findViewById(R.id.textView_postSted);
 
         getSupportActionBar().setTitle(TITLE);
 
@@ -106,13 +103,11 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
     }
 
     private void setKundeText(Kunde k) {
-        tvTittel.setText("Kunde");
         tvNavn.setText(k.getFornavn() + " " + k.getEtternavn());
         tvKundeNr.setText(k.getKundeNr() + "");
         tvAdresse.setText(k.getAdresse() + "");
         tvPostNr.setText(k.getPostNr() + "");
-        tvPostSted.setText("TODO");
-
+        getSupportActionBar().setTitle(k.getFornavn() + " " + k.getEtternavn());
     }
 
     private void getKundeOrdre(Kunde k) {
@@ -129,6 +124,17 @@ public class ReadKundeActivity extends AppCompatActivity implements OrdreFragmen
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                this.finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

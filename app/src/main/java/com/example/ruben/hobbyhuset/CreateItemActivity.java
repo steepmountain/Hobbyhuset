@@ -7,15 +7,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-public class CreateItemActivity extends AppCompatActivity implements CreateKundeFragment.OnFragmentInteractionListener {
+public class CreateItemActivity
+        extends AppCompatActivity
+        implements CreateKundeFragment.OnFragmentInteractionListener,
+        CreateOrdreFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null) {
@@ -32,16 +37,16 @@ public class CreateItemActivity extends AppCompatActivity implements CreateKunde
                     transaction.commit();
                     break;
                 }
-/*
+
                 case MainActivity.ORDRE_CODE: {
-                    Fragment fragment = new NewOrdreFragment();
+                    Fragment fragment = new CreateOrdreFragment();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction transaction = fm.beginTransaction();
                     transaction.replace(R.id.contentFragment, fragment);
                     transaction.commit();
                     break;
                 }
-
+/*
                 case MainActivity.VARE_CODE: {
                     Fragment fragment = new NewVareFragment();
                     FragmentManager fm = getSupportFragmentManager();
@@ -51,12 +56,11 @@ public class CreateItemActivity extends AppCompatActivity implements CreateKunde
                     break;
                 }*/
 
-                default : {
+                default: {
                     Toast.makeText(this, "Invalid origin.", Toast.LENGTH_LONG);
                 }
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "Noe gikk galt med sendingen av data", Toast.LENGTH_LONG);
         }
     }
@@ -64,5 +68,16 @@ public class CreateItemActivity extends AppCompatActivity implements CreateKunde
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                this.finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
