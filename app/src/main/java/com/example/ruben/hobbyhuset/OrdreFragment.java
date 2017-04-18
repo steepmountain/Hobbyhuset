@@ -14,7 +14,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import java.text.ParseException;
 import java.util.ArrayList;
-
+/*
+ * FRagment to show a listview of Ordre given a Ordre Arraylist
+ */
 public class OrdreFragment extends Fragment {
 
     ListView mOrdreListView;

@@ -12,6 +12,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import java.util.ArrayList;
 
+/*
+ * Fragment to show a ListView of aN ArrayList of Kunder
+ */
 public class KundeFragment extends Fragment {
 
     ListView mKundeListView;

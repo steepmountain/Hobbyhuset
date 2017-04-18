@@ -70,6 +70,7 @@ public class CreateVareFragment extends Fragment {
         return fragment;
     }
 
+    // Sends EditText input to RESTClient
     protected void createNewVare() {
 
         String vareNr = etVareNr.getText().toString().trim();
@@ -99,6 +100,7 @@ public class CreateVareFragment extends Fragment {
 
     }
 
+    // Simple checks for input
     private boolean checkInput(String vareNr, String betegnelse, String pris, String antall) {
 
         // Simple checks for input. Could be made more robust before being sent to DB

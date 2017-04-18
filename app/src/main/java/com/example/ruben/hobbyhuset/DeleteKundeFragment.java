@@ -18,7 +18,8 @@ public class DeleteKundeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        // Attempts to delete the sent Kunde
         NetworkHelper helper = new NetworkHelper(getContext());
         if (helper.isOnline()) {
             HobbyhusetApi api = new HobbyhusetApi();

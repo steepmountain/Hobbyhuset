@@ -35,6 +35,7 @@ public class RestClient {
             this.mCallback = callback;
         }
 
+        // Async call to Get an object given its URL
         @Override
         protected String doInBackground(String... strings) {
             String response = null;
@@ -65,6 +66,7 @@ public class RestClient {
             return response;
         }
 
+        // sends the callback to the calling method
         @Override
         protected void onPostExecute(String result) {
             mCallback.onTaskComplete(result);
@@ -83,6 +85,7 @@ public class RestClient {
             this.mCallback = callback;
         }
 
+        // Async method to delete a given object
         @Override
         protected String doInBackground(String... strings) {
             String response = null;
@@ -137,6 +140,7 @@ public class RestClient {
             this.mUpdateJSON = updateJSON;
         }
 
+        // async method to update an item
         @Override
         protected String doInBackground(String... strings) {
             String response = null;
@@ -196,6 +200,7 @@ public class RestClient {
             this.mItem = item;
         }
 
+        // async method to insert a given item
         @Override
         protected String doInBackground(String... strings) {
             String response = null;

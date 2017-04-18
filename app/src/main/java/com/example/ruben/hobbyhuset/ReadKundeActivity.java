@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+/*
+ * Activity to show a single Kunde object and a list of all Ordre for the kunde
+ */
 public class ReadKundeActivity extends AppCompatActivity {
 
     private final static String TITLE = "Kunde";
@@ -29,11 +32,6 @@ public class ReadKundeActivity extends AppCompatActivity {
     TextView tvAdresse;
     TextView tvPostNr;
     TextView tvError;
-
-    ListView lvOrdreForKunde;
-    ArrayList<Ordre> mOrdreArray;
-    OrdreAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +80,9 @@ public class ReadKundeActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * Methods for buttons
+     */
     protected void nyKunde(View view) {
         Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.KUNDE_CODE);
@@ -102,6 +103,7 @@ public class ReadKundeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Sets the text for the given kunde
     private void setKundeText(Kunde k) {
         tvNavn.setText(k.getFornavn() + " " + k.getEtternavn());
         tvKundeNr.setText(k.getKundeNr() + "");
@@ -110,6 +112,7 @@ public class ReadKundeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(k.getFornavn() + " " + k.getEtternavn());
     }
 
+    // Gets ordre for a given kunde
     private void getKundeOrdre(Kunde k) {
         Bundle args = new Bundle();
         args.putInt("KundeNr", k.getKundeNr());

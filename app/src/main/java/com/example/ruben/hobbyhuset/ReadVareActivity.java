@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/*
+ * Activity to show a single Vare
+ */
 public class ReadVareActivity extends AppCompatActivity {
 
     private final static String TITLE = "Vare";
@@ -65,6 +68,10 @@ public class ReadVareActivity extends AppCompatActivity {
         }
     }
 
+
+    /*
+     * Button methods
+     */
     protected void nyVare(View view) {
         Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.VARE_CODE);
@@ -85,6 +92,7 @@ public class ReadVareActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+     // sets text for a given vare
     private void setVareTekst(Vare v) {
         tvVNr.setText(v.getVareNr() + "");
         tvBetegnelse.setText(v.getBetegnelse());

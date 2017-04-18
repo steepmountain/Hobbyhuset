@@ -24,18 +24,10 @@ public class MainActivity
         extends AppCompatActivity {
 
     // TODO: ny kunde burde være knapp i main liste
-
-    // Priority 2: Required additions
-    // TODO: Activities and fragments need proper titles
-    // TODO: All fields needs a name, format= "FieldName: FieldValue";
     // TODO: Preference manager to remember login
-
-    // Priority 3: Has to wait until functionality is there
-    // TODO: Polish GUI
     // TODO: Landscape orientation
-
-    // Priority 4: Wait until everything is done
     // TODO: Clean up imports
+    // TODO: UpdateVareActivity, check input
     // TODO: Comment everything
 
     private static String[] fragmentTitles = new String[]{"Kunde", "Ordre", "Vare", "Instillinger"};
@@ -68,13 +60,14 @@ public class MainActivity
         }
 
 
+        // Sets up the drawer fragment
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.drawer);
-
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        // toggle to open and close drawer
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
@@ -88,7 +81,6 @@ public class MainActivity
                 super.onDrawerOpened(drawerView);
             }
         };
-
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 
@@ -103,29 +95,7 @@ public class MainActivity
         startFragment(KUNDE_CODE);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-
-    /// private method to launch a fragment based on the fragment ID
+    // private method to launch a fragment based on the fragment ID
     public void startFragment(int id) {
         Fragment fragment = null;
         FragmentManager fm;
@@ -160,6 +130,30 @@ public class MainActivity
             Toast.makeText(this, "Failed to start fragment", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    /*
+     * Remaining methods are overrides for Drawer
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {

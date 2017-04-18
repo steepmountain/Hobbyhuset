@@ -19,7 +19,10 @@ public class HobbyhusetApi {
     public HobbyhusetApi() {
     }
 
-    // GETS
+    /*
+      * GET-methods
+     */
+
     // Gets every Kunde in list
     public void getAlleKunder(GetResponseCallback callback) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde?transform=1";
@@ -28,7 +31,7 @@ public class HobbyhusetApi {
 
     // gets kunde by kundeNr
     public void getKunde(GetResponseCallback callback, int kundeNr) {
-        String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde?filter=kNr,eq,"+ kundeNr +"&transform=1";
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde?filter=kNr,eq," + kundeNr + "&transform=1";
         doExecuteGetCall(callback, restUrl);
     }
 
@@ -38,34 +41,43 @@ public class HobbyhusetApi {
         doExecuteGetCall(callback, restUrl);
     }
 
+    // gets all Ordre from a kundeNr
     public void getOrdreFraKunde(GetResponseCallback callback, int kundeNr) {
-        String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre?filter=kNr,eq,"+ kundeNr +"&transform=1";
+        String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre?filter=kNr,eq," + kundeNr + "&transform=1";
         doExecuteGetCall(callback, restUrl);
     }
 
+    // gets all Varer
     public void getAlleVarer(GetResponseCallback callback) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare?transform=1";
         doExecuteGetCall(callback, restUrl);
     }
 
+    // Get all Ordrelinje for a ordreNr
     public void getOrdrelinje(GetResponseCallback callback, int ordreNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Ordrelinje?filter=OrdreNr,eq," + ordreNr + "&transform=1";
         doExecuteGetCall(callback, restUrl);
     }
 
+    // gets vare from a varenr
     public void getVare(GetResponseCallback callback, int vareNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/" + vareNr;
         doExecuteGetCall(callback, restUrl);
     }
 
 
-    // UPDATES
+    /*
+     * UPDATE-methods
+     */
+
+    // Updates a vare object with new data
     public void updateVare(GetResponseCallback callback, Vare v) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/" + v.getVareNr();
         JSONObject updateJSON = v.toJSON();
         doExecuteUpdateCall(callback, restUrl, updateJSON);
     }
 
+    // updates a kunde object with new data
     public void updateKunde(GetResponseCallback callback, Kunde k) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde/" + k.getKundeNr();
         JSONObject updateJSON = k.toJSON();
@@ -73,33 +85,48 @@ public class HobbyhusetApi {
     }
 
 
-    // INSERTS
+    /*
+     * INSERT-methods
+     */
+    // Inserts new vare
     public void insertVare(GetResponseCallback callback, Vare v) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/";
         doExecuteInsertCall(callback, restUrl, v);
     }
 
+    // Inserts new kunde
     public void insertKunde(GetResponseCallback callback, Kunde k) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Kunde/";
         doExecuteInsertCall(callback, restUrl, k);
     }
 
+    // Inserts new ordre
     public void insertOrdre(GetResponseCallback callback, Ordre o) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Ordre/";
         doExecuteInsertCall(callback, restUrl, o);
     }
 
-    // DELETES
+    /*
+     * DELETE-methods
+     */
+
+    // deletes vare given its varenr
     public void deleteVare(GetResponseCallback callback, int vareNr) {
         String restUrl = "http://itfag.usn.no/~141175/api.php/Vare/ " + vareNr;
         doExecuteDeleteCall(callback, restUrl);
     }
 
+    // deletes kunde given its kundenr
     public void deleteKunde(GetResponseCallback callback, int kundeNr) {
         String restUrl = "http//itfag.usn.no/~141175/api.php/Kunde/ " + kundeNr;
         doExecuteDeleteCall(callback, restUrl);
     }
 
+    /*
+     * EXECUTE-methods for each CRUD-method
+     */
+
+    // does a get-call given an URL
     private void doExecuteGetCall(final GetResponseCallback callback, String restUrl) {
         new RestClient.GetTask(restUrl, new RestClient.RestTaskCallback() {
             @Override
@@ -109,6 +136,7 @@ public class HobbyhusetApi {
         }).execute(restUrl);
     }
 
+    // does an update-call given a URL and a new JSON item
     private void doExecuteUpdateCall(final GetResponseCallback callback, String restUrl, JSONObject updateJSON) {
         new RestClient.UpdateTask(restUrl, new RestClient.RestTaskCallback() {
             @Override
@@ -118,6 +146,7 @@ public class HobbyhusetApi {
         }, updateJSON).execute(restUrl);
     }
 
+    // does an insert-call given a url and an item to be updated
     private void doExecuteInsertCall(final GetResponseCallback callback, String restUrl, Item item) {
         new RestClient.InsertTask(restUrl, new RestClient.RestTaskCallback() {
             @Override
@@ -127,6 +156,7 @@ public class HobbyhusetApi {
         }, item).execute(restUrl);
     }
 
+    // does an executec call given a URL
     private void doExecuteDeleteCall(final GetResponseCallback callback, String restUrl) {
         new RestClient.DeleteTask(restUrl, new RestClient.RestTaskCallback() {
             @Override
@@ -143,15 +173,7 @@ abstract class GetResponseCallback {
 
 }
 
-abstract class PostCallback {
-    /**
-     * Called when a POST success response is received. <br/>
-     * This method is guaranteed to execute on the UI thread.
-     */
-    public abstract void onPostSuccess();
-
-}
-
+// Inner class to help API determine network status
 class NetworkHelper {
 
     Context mContext;

@@ -51,6 +51,7 @@ public class Kunde extends Item implements Parcelable {
     static final String KOL_NAVN_ADRESSE = "Adresse";
     static final String KOL_NAVN_POSTNR = "PostNr";
 
+
     public Kunde(int kundeNr, String fornavn, String etternavn, String adresse, String postNr) {
         this.kundeNr = kundeNr;
         this.fornavn = fornavn;
@@ -100,6 +101,9 @@ public class Kunde extends Item implements Parcelable {
                 '}';
     }
 
+    /*
+     * Methods to make the object parcelable
+     */
     @Override
     public int describeContents() {
         return 0;

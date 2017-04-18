@@ -3,7 +3,7 @@ package com.example.ruben.hobbyhuset;
 import org.json.JSONObject;
 
 /**
- * Created by Ruben on 03.04.2017.
+ * Abstract parent class for Kunde, Vare, Object to implement the general toJSON for update calls
  */
 
 public abstract class Item {

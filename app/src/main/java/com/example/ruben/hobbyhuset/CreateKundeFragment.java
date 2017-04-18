@@ -65,6 +65,7 @@ public class CreateKundeFragment extends Fragment {
         return fragment;
     }
 
+    // Sends EditText input to RESTClient
     protected void createNewKunde() {
         String fornavn = etFornavn.getText().toString().trim();
         String etternavn = etEtternavn.getText().toString().trim();
@@ -93,6 +94,7 @@ public class CreateKundeFragment extends Fragment {
 
     }
 
+    // Simple checks for input
     private boolean checkInput(String fornavn, String etternavn, String adresse, String postNr) {
 
         // Simple checks for input. Could be made more robust before being sent to DB

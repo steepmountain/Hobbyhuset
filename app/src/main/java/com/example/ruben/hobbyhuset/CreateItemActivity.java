@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/*
+ * Activity to hold NewItem fragments
+ */
 public class CreateItemActivity
         extends AppCompatActivity {
 
@@ -19,6 +22,7 @@ public class CreateItemActivity
         setContentView(R.layout.activity_new_item);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null) {
@@ -64,6 +68,7 @@ public class CreateItemActivity
     }
 
 
+    // Back-button on action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

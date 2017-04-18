@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+/*
+ * Activity to show a single Ordre object and a list of all varer for the Ordre
+ */
 public class ReadOrdreActivity extends AppCompatActivity {
 
     private final static String TITLE = "Ordre";
@@ -71,6 +74,9 @@ public class ReadOrdreActivity extends AppCompatActivity {
     }
 
 
+    /*
+     * Button methods
+     */
     protected void nyOrdre(View view) {
         Intent intent = new Intent(this, CreateItemActivity.class);
         intent.putExtra("Source", MainActivity.ORDRE_CODE);

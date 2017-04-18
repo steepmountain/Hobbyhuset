@@ -62,6 +62,7 @@ public class CreateOrdreFragment extends Fragment {
         return fragment;
     }
 
+    // Sends EditText input to RESTClient
     private void createNewOrdre() {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,6 +89,7 @@ public class CreateOrdreFragment extends Fragment {
         }
     }
 
+    // Simple checks for input
     private boolean checkInput(String kundeNr) {
 
         // Checks kundeNr, assumes date is correct

@@ -19,6 +19,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * Fragment that takes an incoming kundeNr and displays its data to be edited and sent for UPDATE
+ */
 public class UpdateKundeFragment extends Fragment {
 
     private Kunde currentKunde;
@@ -51,6 +54,7 @@ public class UpdateKundeFragment extends Fragment {
         currentKunde = getArguments().getParcelable("Kunde");
 
         mActivity = getActivity();
+        
         // Inits label and edittext for fornavn
         tvFornavnLabel = (TextInputLayout) fragment.findViewById(R.id.textView_fornavnLabel);
         etFornavn = (EditText) fragment.findViewById(R.id.editText_fornavn);

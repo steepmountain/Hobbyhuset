@@ -117,6 +117,10 @@ public class Vare extends Item implements Parcelable{
                 '}';
     }
 
+    /*
+     * Methods to make the object parcelable
+     */
+
     @Override
     public int describeContents() {
         return 0;

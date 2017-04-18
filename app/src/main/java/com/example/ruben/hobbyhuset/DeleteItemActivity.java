@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/*
+ * Activity hold DeleteItem fragments
+ */
 public class DeleteItemActivity extends AppCompatActivity {
 
     @Override
@@ -19,11 +22,12 @@ public class DeleteItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete_item);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         // Checks incoming intent
         Intent intent = getIntent();
         if (intent != null) {
 
-            // checks which class sent the nyItem request
+            // checks which class sent the deleteItem request
             int origin = intent.getIntExtra("Source", -1);
             switch (origin) {
 

@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/*
+ * Activity to hold UpdateItem fragments
+ */
 public class UpdateItemActivity extends AppCompatActivity {
 
     @Override

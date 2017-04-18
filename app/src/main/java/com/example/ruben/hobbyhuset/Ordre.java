@@ -15,7 +15,7 @@ import java.text.ParseException;
  * Created by Ruben on 23.03.2017.
  */
 
-public class Ordre extends Item implements Parcelable{
+public class Ordre extends Item implements Parcelable {
 
     int ordreNr;
 
@@ -43,7 +43,6 @@ public class Ordre extends Item implements Parcelable{
     String sendtDato;
     String betaltDato;
     int kundeNr;
-
 
 
     // Name of table and columns from database
@@ -85,7 +84,7 @@ public class Ordre extends Item implements Parcelable{
         ArrayList<Ordre> ordreListe = new ArrayList<Ordre>();
         JSONObject jsonData = new JSONObject(jsonString);
         JSONArray jsonOrdreTabell = jsonData.optJSONArray(TABELL_NAVN_ORDRE);
-        for(int i = 0; i < jsonOrdreTabell.length(); i++) {
+        for (int i = 0; i < jsonOrdreTabell.length(); i++) {
             JSONObject jsonOrdre = (JSONObject) jsonOrdreTabell.get(i);
             Ordre ordre = new Ordre(jsonOrdre);
             ordreListe.add(ordre);
@@ -98,7 +97,7 @@ public class Ordre extends Item implements Parcelable{
         ArrayList<Integer> nyKundeNrListe = new ArrayList<>();
         JSONObject jsonData = new JSONObject(jsonString);
         JSONArray jsonOrdreTabell = jsonData.optJSONArray(TABELL_NAVN_ORDRELINJE);
-        for(int i = 0; i < jsonOrdreTabell.length(); i++) {
+        for (int i = 0; i < jsonOrdreTabell.length(); i++) {
             JSONObject jsonVareNr = (JSONObject) jsonOrdreTabell.get(i);
             int vareNr = jsonVareNr.getInt(KOL_NAVN_VARENR);
             nyKundeNrListe.add(vareNr);
@@ -117,6 +116,9 @@ public class Ordre extends Item implements Parcelable{
                 '}';
     }
 
+    /*
+     * Methods to make the object parcelable
+    */
     @Override
     public int describeContents() {
         return 0;

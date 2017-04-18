@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Ruben on 30.03.2017.
+ * Adapter for Kunde ListView
  */
 
 public class VareAdapter extends BaseAdapter {

@@ -17,6 +17,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/*
+ * Framgnet to show a listview of Varer given an arraylist of vare
+ */
+
 public class VareFragment extends Fragment {
 
     ListView mVareListView;
