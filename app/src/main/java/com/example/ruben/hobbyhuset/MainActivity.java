@@ -2,6 +2,7 @@ package com.example.ruben.hobbyhuset;
 
 import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
@@ -56,6 +57,7 @@ public class MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // launch counter if remmeberMe is set to true
         mSettings = getPreferences(MODE_PRIVATE);
@@ -64,9 +66,6 @@ public class MainActivity
             mSettings.edit().putInt("runCount", ++launches).commit();
             mSettings.edit().putString("lastVisit", new Date().toString()).commit();
         }
-
-
-
 
         // checks if permissions are granted, no callback as the whole app fails if it doesn't have these permissions
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED)
@@ -113,7 +112,12 @@ public class MainActivity
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+    }
 
+    // Fragment methods that require getActivity() must be run in onStart to avoid NullPointerExceptions
+    @Override
+    public void onStart() {
+        super.onStart();
         startFragment(KUNDE_CODE);
     }
 

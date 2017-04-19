@@ -19,7 +19,7 @@
         android:padding="5dp"
         android:text="OrdreNr"
         android:textAllCaps="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+        android:textAppearance="@android:style/TextAppearance.Material.Headline" />
 
     <TextView
         android:id="@+id/ordreItemTextView_ordreDato"
@@ -28,7 +28,7 @@
         android:layout_below="@id/ordreItemTextView_ordreNr"
         android:padding="5dp"
         android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
     <TextView
         android:id="@+id/ordreItemTextView_sendtDato"
@@ -38,7 +38,7 @@
         android:layout_below="@id/ordreItemTextView_ordreDato"
         android:padding="5dp"
         android:text="pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
     <TextView
         android:id="@+id/ordreItemTextView_betaltDato"
@@ -48,7 +48,7 @@
         android:layout_below="@id/ordreItemTextView_sendtDato"
         android:padding="5dp"
         android:text="sjanger"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
 
 
@@ -59,6 +59,6 @@
         android:layout_below="@id/ordreItemTextView_betaltDato"
         android:padding="5dp"
         android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
 </RelativeLayout>

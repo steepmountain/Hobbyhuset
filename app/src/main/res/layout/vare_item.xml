@@ -21,7 +21,7 @@
         android:padding="5dp"
         android:text="VareNr"
         android:textAllCaps="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Headline" />
 
     <TextView
         android:id="@+id/vareTextView_betegnelse"
@@ -31,7 +31,7 @@
         android:layout_toRightOf="@id/vareTextView_vareNr"
         android:padding="5dp"
         android:text="Betegnelse"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Headline" />
 
     <TextView
         android:id="@+id/vareTextView_pris"
@@ -41,7 +41,7 @@
         android:layout_toRightOf="@id/vareItem_icon"
         android:padding="5dp"
         android:text="Pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
     <TextView
         android:id="@+id/vareTextView_katNr"
@@ -51,7 +51,7 @@
         android:layout_toRightOf="@id/vareTextView_pris"
         android:padding="5dp"
         android:text="KategoriNr"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
 
     <TextView
@@ -62,7 +62,7 @@
         android:layout_toRightOf="@id/vareItem_icon"
         android:padding="5dp"
         android:text="Antall"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
     <TextView
         android:id="@+id/vareTextView_hylle"
@@ -72,6 +72,6 @@
         android:layout_toRightOf="@id/vareTextView_antall"
         android:padding="5dp"
         android:text="Hylle"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
 </RelativeLayout>

@@ -7,97 +7,105 @@
     tools:context="com.example.ruben.hobbyhuset.ReadKundeActivity">
 
     <LinearLayout
-        android:id="@+id/layout_buttons"
+        android:background="#fff"
+        android:id="@+id/elevation_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:elevation="2dp"
+        android:orientation="vertical">
 
-        <Button
-            android:onClick="nyOrdre"
+        <LinearLayout
+            android:id="@+id/layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="nyOrdre"
+                android:text="Ny ordre" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="endreOrdre"
+                android:text="Endre ordre" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="slettOrdre"
+                android:text="Slett ordre" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_ordreNr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ny ordre" />
+            android:layout_below="@id/layout_buttons"
+            android:padding="5dp"
+            android:text="tittel"
+            android:textAllCaps="true"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline" />
 
-        <Button
+        <TextView
+            android:id="@+id/textView_ordreDato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="endreOrdre"
-            android:text="Endre ordre" />
+            android:layout_below="@id/textView_ordreNr"
+            android:padding="5dp"
+            android:text="tid"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
-        <Button
+        <TextView
+            android:id="@+id/textView_sendtDato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="slettOrdre"
-            android:text="Slett ordre" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/textView_ordreDato"
+            android:padding="5dp"
+            android:text="pris"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
+        <TextView
+            android:id="@+id/textView_betaltDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/textView_sendtDato"
+            android:padding="5dp"
+            android:text="sjanger"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
+
+        <TextView
+            android:id="@+id/textView_kundeNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_betaltDato"
+            android:padding="5dp"
+            android:text="tid"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
+        <TextView
+            android:id="@+id/textView_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_kundeNr"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_ordreNr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_buttons"
-        android:padding="5dp"
-        android:text="tittel"
-        android:textAllCaps="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-    <TextView
-        android:id="@+id/textView_ordreDato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_ordreNr"
-        android:padding="5dp"
-        android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/textView_sendtDato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/textView_ordreDato"
-        android:padding="5dp"
-        android:text="pris"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/textView_betaltDato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/textView_sendtDato"
-        android:padding="5dp"
-        android:text="sjanger"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-
-    <TextView
-        android:id="@+id/textView_kundeNr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_betaltDato"
-        android:padding="5dp"
-        android:text="tid"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/textView_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_kundeNr"
-        android:padding="5dp"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <FrameLayout
         android:id="@+id/varerForOrdreFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_below="@+id/textView_error" />
-
+        android:layout_below="@+id/elevation_layout"
+        android:layout_weight="1" />
 
 
 </RelativeLayout>
