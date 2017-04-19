@@ -29,15 +29,7 @@ import java.util.Date;
 public class MainActivity
         extends AppCompatActivity {
 
-    // TODO: reload settings on change
-    // TODO: hvis preference Navn i drawer
-    // TODO: ny kunde burde være knapp i main liste
-    // TODO: Preference manager to remember login
-    // TODO: Landscape orientation
-    // TODO: Clean up imports
-    // TODO: Comment settings
-
-    private static String[] fragmentTitles = new String[]{"Kunde", "Ordre", "Vare", "Instillinger", "Profil"};
+    private static String[] fragmentTitles = new String[]{"Kunder", "Ordre", "Varer", "Instillinger", "Profil"};
 
     private static final int REQUEST_CODE_INTERNET = 1;
     private static final int REQUEST_CODE_ACCESS_NETWORK_STATE = 2;

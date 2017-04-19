@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.EditTextPreference;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class CreateVareFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment = inflater.inflate(R.layout.fragment_create_vare, container, false);
         mActivity = getActivity();
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Ny vare");
         tvVareNr = (TextInputLayout) fragment.findViewById(R.id.textView_vareNr);
         etVareNr = (EditText) fragment.findViewById(R.id.editText_vareNr);
 
