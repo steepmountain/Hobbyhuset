@@ -13,9 +13,8 @@
 
     <PreferenceCategory android:title="Cache">
 
-        <CheckBoxPreference
-            android:key="checkbox_preference"
-            android:summary="Huk av hvis du vil at appen skal huske at du har logget inn mellom sesjoner"
+        <SwitchPreference
+            android:key="switch_pref"
             android:title="Husk meg" />
     </PreferenceCategory>
 

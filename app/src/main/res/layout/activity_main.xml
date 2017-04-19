@@ -14,6 +14,8 @@
             android:layout_weight="1"
             tools:layout_editor_absoluteY="8dp"
             tools:layout_editor_absoluteX="8dp" />
+
+
         <ListView
             android:id="@+id/drawer"
             android:layout_width="240dp"
@@ -23,4 +25,6 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:background="@color/colorAccentLight"/>
+
+
 </android.support.v4.widget.DrawerLayout>

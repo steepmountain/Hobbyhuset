@@ -1,9 +1,10 @@
 package com.example.ruben.hobbyhuset;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.Uri;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,24 +14,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 public class MainActivity
         extends AppCompatActivity {
 
+    // TODO: reload settings on change
+    // TODO: hvis preference Navn i drawer
     // TODO: ny kunde burde være knapp i main liste
     // TODO: Preference manager to remember login
     // TODO: Landscape orientation
     // TODO: Clean up imports
-    // TODO: UpdateVareActivity, check input
-    // TODO: Comment everything
+    // TODO: Comment settings
 
-    private static String[] fragmentTitles = new String[]{"Kunde", "Ordre", "Vare", "Instillinger"};
+    private static String[] fragmentTitles = new String[]{"Kunde", "Ordre", "Vare", "Instillinger", "Profil"};
 
     private static final int REQUEST_CODE_INTERNET = 1;
     private static final int REQUEST_CODE_ACCESS_NETWORK_STATE = 2;
@@ -39,15 +45,28 @@ public class MainActivity
     public static final int ORDRE_CODE = 1;
     public static final int VARE_CODE = 2;
     public static final int INSTILLINGER_CODE = 3;
+    public static final int PROFILE_CODE = 4;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
+    private SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // launch counter if remmeberMe is set to true
+        mSettings = getPreferences(MODE_PRIVATE);
+        if (mSettings.getBoolean("RememberMe", false)) {
+            int launches = mSettings.getInt("runCount", 0);
+            mSettings.edit().putInt("runCount", ++launches).commit();
+            mSettings.edit().putString("lastVisit", new Date().toString()).commit();
+        }
+
+
+
 
         // checks if permissions are granted, no callback as the whole app fails if it doesn't have these permissions
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED)
@@ -71,12 +90,16 @@ public class MainActivity
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely closed state. */
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
             }
 
-            /** Called when a drawer has settled in a completely open state. */
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
@@ -91,7 +114,6 @@ public class MainActivity
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
-        // Starts KundeFragment as default fragment when the app launches
         startFragment(KUNDE_CODE);
     }
 
@@ -113,6 +135,9 @@ public class MainActivity
                 break;
             case INSTILLINGER_CODE:
                 fragment = new MyPreferenceFragment();
+                break;
+            case PROFILE_CODE:
+                fragment = new ProfileFragment();
                 break;
         }
 
