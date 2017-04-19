@@ -1,24 +1,16 @@
 package com.example.ruben.hobbyhuset;
 
 import android.app.Activity;
-import android.content.Context;
-import android.net.Network;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /*
  * Fragment that takes an incoming kundeNr and displays its data to be edited and sent for UPDATE
@@ -98,7 +90,6 @@ public class UpdateKundeFragment extends Fragment {
             api.updateKunde(new GetResponseCallback() {
                 @Override
                 void onDataReceived(String item) {
-                    // TODO: hva skjer på received?
                 }
             }, updateKunde);
         }
