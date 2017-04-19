@@ -46,7 +46,7 @@ public class VareFragment extends Fragment {
 
             // Branches if bundle contains argument
             if (args != null) {
-                int ordreNr = args.getInt("OrdreNr"); // TODO: check for null value
+                int ordreNr = args.getInt("OrdreNr"); //
 
                 // Updates the list of VareNr based on the OrdreNr contained in bundle
                 api.getOrdrelinje(new GetResponseCallback() {

@@ -54,7 +54,7 @@ public class UpdateKundeFragment extends Fragment {
         currentKunde = getArguments().getParcelable("Kunde");
 
         mActivity = getActivity();
-        
+
         // Inits label and edittext for fornavn
         tvFornavnLabel = (TextInputLayout) fragment.findViewById(R.id.textView_fornavnLabel);
         etFornavn = (EditText) fragment.findViewById(R.id.editText_fornavn);

@@ -21,8 +21,8 @@ public class Kunde extends Item implements Parcelable {
     int kundeNr;
     String fornavn;
     String etternavn;
-    String adresse; // TODO: Make Class "adresse"
-    String postNr; // TODO: make Class "Poststed" OR make String so it can read leading 0
+    String adresse;
+    String postNr;
 
     public int getKundeNr() {
         return kundeNr;
